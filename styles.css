@@ -1,0 +1,42 @@
+/* general */
+body {
+    /* padding: 0; */
+    margin: 0;
+    margin-top: -22px;
+}
+.tittle{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+
+/* menu */
+.menu_over {
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.menu_box {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+  
+    background-color: bisque;
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content:space-around ;
+    padding: 10px;
+
+    border-radius: 25px;
+    
+}
+.menu_box .tittle{
+    font-size: 50px;
+}
