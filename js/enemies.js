@@ -1,0 +1,1 @@
+console.log("enemies.js loaded")
