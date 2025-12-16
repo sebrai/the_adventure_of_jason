@@ -1,8 +1,6 @@
-function untangle_que(animation_que) {
-    for (let num = 1; num < animation_que.length; num++) {
-        const element = animation_que[num];
-        const prev = animation_que[num -1];
-        prev.target.addEventListener("")
+ async function untangle_que(animation_que) {
+    for (const item of animation_que) {
+       await item.do()
     }
 }
 
