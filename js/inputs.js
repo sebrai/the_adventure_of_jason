@@ -4,6 +4,7 @@ start_btn.addEventListener("click",()=>{
     menu_overlay.style.top = "100%"
    },menu_overlay)]
    untangle_que(que)
+   start_header_animation()
 })
 
 // game logik inputs ----------------------------------------------------------
