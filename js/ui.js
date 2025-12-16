@@ -31,4 +31,4 @@ function start_header_animation() {
     requestAnimationFrame(step);
 }
 
-    console.log("ui loaded")
+console.log("ui loaded")
