@@ -1,9 +1,8 @@
 class enemy {
     constructor(type) {
-        this.key = "key("+key_incrementor+")"
-        key_incrementor+= 1
+        this.key = getkey()
         // body goes here
-        this.hero = type
+        this.hero = {...type}
         this.jason = false
     }
 }
@@ -14,18 +13,11 @@ class animation_que_item {
     }
 }
 class ally {
-    constructor(type,main=false) { // add if you add more make main the final one
-       this.key = "key("+key_incrementor+")"
-        key_incrementor+= 1
+    constructor(type) {
+       this.key = getkey
         // body goes here
-        this.hero =  type
-        this.jason = main
-        if (main){
-
-        }
-        else{
-
-        }
+        this.hero =  {...type}
+        this.jason = (this.hero.key == "jason")
     }
 }
 

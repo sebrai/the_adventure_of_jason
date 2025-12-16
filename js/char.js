@@ -1,4 +1,6 @@
 let jason = {
+    key:"jason",
+    name:"Jason",
     maxhp:100,
     current:{ // describes anything that changes
         hp:100,
