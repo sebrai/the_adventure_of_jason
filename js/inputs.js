@@ -2,7 +2,7 @@
 start_btn.addEventListener("click",()=>{
    let que = [ new animation_que_item(()=>{
     menu_overlay.style.top = "100%"
-   },"none")]
+   },menu_overlay)]
    untangle_que(que)
 })
 
