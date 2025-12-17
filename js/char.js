@@ -24,7 +24,7 @@ let jason = {
         },
         aspect: 0
     },
-    sprites: [],// add sprites when created
+    sprites: ["../assets/temp/funny dog.jpg"],// add sprites when created
 
 
 }

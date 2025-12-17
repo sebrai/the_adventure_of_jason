@@ -132,13 +132,14 @@ body {
   height: 70vh;
 }
 
-.areas:nth-child(1) {
+.areas {
   position: absolute;
   top: 0;
   left: 0;
   width: 50%;
   height: 100%;
-  background-color: darkgreen
+  /* background-color: darkgreen */
+
 }
 
 .areas:nth-child(2) {
@@ -149,21 +150,33 @@ body {
   height: 100%;
   background-color: darkred;
 }
-
-/* .allyarea {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background-color: darkgreen;
+.areas .char_indiv:nth-child(1){
+  top: 33%;
+  left: 66%;
 }
 
-.enemyarea {
+
+
+
+ .char_indiv{
+  display:  flex;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  aspect-ratio: 1/1;
+  background-color: bisque;
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  background-color: darkred;
-} */
+ }
+.char_indiv img{
+  max-width: 100%;
+  max-height: 100%;
+ 
+}
+.char_indiv div:nth-child(1){
+
+  background-color: grey;
+}
+.char_indiv div:nth-child(1) div{
+  background-color: greenyellow;
+  transition: width 1s ease-out;
+}
