@@ -2,8 +2,10 @@ let jason = {
     key: "jason",
     name: "Jason",
     maxhp: 100,
+    base_mana:20,
     current: { // describes anything that changes
         hp: 100,
+        mana:20,
         dmg_buffs: [],
         sheild_buffs: [],
         items: {

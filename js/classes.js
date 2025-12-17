@@ -1,5 +1,5 @@
 class html_body {
-    constructor(base){
+    constructor(base,ally){
         this.whole = document.createElement("div")
         this.hp_bar =document.createElement("div")
         this.hp_current = document.createElement("div")
@@ -13,7 +13,12 @@ class html_body {
         this.sprite.src = base.hero.sprites[base.hero.current.aspect]
         this.whole.appendChild(this.sprite)
         this.whole.className = "char_indiv"
-        ally_area.appendChild(this.whole)
+        if (ally) {
+        ally_area.appendChild(this.whole)    
+        } else {
+            enemy_area.appendChild(this.whole)
+
+        }
         console.log("whole element:",this.hp_bar.style.width)
     }
 }
@@ -23,8 +28,8 @@ class html_body {
 class enemy {
     constructor(type) {
         this.key = getkey()
-        // body goes here
         this.hero = { ...type }
+        this.body = new html_body(this,false)
         this.jason = false
     }
 }
@@ -38,7 +43,7 @@ class ally {
     constructor(type) {
         this.key = getkey()
         this.hero = { ...type }
-        this.body = new html_body(this)
+        this.body = new html_body(this,true)
         this.jason = (this.hero.key == "jason")
     }
 }
