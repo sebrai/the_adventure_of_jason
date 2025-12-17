@@ -21,4 +21,21 @@ function rng(max = 100, min = 0) {
     let r = Math.floor(Math.random() * (max + 1)) + min
     return r
 }
+function getdmg(attack_num,user) {
+    let dmg = user.hero.attacks[attack_num].dmg
+    for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
+        const element = user.hero.current.dmg_buffs[index];
+        if (element.order == 1){
+            dmg += element.value
+        }
+        else if (element.order == 2) {
+            dmg *= element.value
+        }
+        else if (element.order == 3){
+            dmg ^= element.value
+        }
+    }
+    return dmg;
+
+}
 console.log("def loaded")

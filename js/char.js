@@ -27,6 +27,24 @@ let jason = {
         aspect: 0
     },
     sprites: ["../assets/temp/funny dog.jpg"],// add sprites when created
+    attacks:[
+        {
+            dmg:40,
+            cost:0,
+            range:"melee",
+            type:"slash",
+            target:"enemy",
+            eff: {
+                power:0,
+                duration:0,
+                targ:"none",
+                type:"none"
+            },
+            func: (targ,self)=>{
+                targ.hero.hp
+            }
+        },{},{},{}
+    ],
 
 
 }
