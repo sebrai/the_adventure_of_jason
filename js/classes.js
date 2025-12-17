@@ -19,7 +19,7 @@ class html_body {
             enemy_area.appendChild(this.whole)
 
         }
-        console.log("whole element:",this.hp_bar.style.width)
+        // console.log("whole element:",this.hp_bar.style.width)
     }
 }
 
@@ -39,6 +39,7 @@ class animation_que_item {
         this.target = target
     }
 }
+
 class ally {
     constructor(type) {
         this.key = getkey()

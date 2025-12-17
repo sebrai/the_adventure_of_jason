@@ -1,11 +1,35 @@
 //  general ---------------------------
-async function untangle_que(animation_que) {
-    for (const item of animation_que) {
-        await item.do()
-        console.log("animation on item:", item.target)
+const animationQueue = {
+  items: [],
+  running: false,
+  
+
+  add(item) {
+    this.items.push(item);
+    if (!this.running) this.run();
+  },
+
+  async run() {
+    this.running = true;
+
+    while (this.items.length > 0) {
+      const item = this.items.shift();
+      await item.do();
+      console.log("animation on item:", item.target)
     }
+
+    this.running = false;
     control_lock = false
-}
+  }
+};
+
+// async function untangle_que(animation_que) {
+//     for (const item of animation_que) {
+//         await item.do()
+//         console.log("animation on item:", item.target)
+//     }
+//     control_lock = false
+// }
 function waitForMotion(element, {
     transitionProperty = null,
     timeout = 1000
