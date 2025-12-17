@@ -1,47 +1,50 @@
 /* general */
 body {
-    /* padding: 0; */
-    margin: 0;
-    margin-top: -22px;
+  /* padding: 0; */
+  margin: 0;
+  margin-top: -22px;
 }
-.tittle{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+.tittle {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 
 
 /* menu */
 .menu_over {
-    width: 100vw;
-    height: 100vh;
-    background-color: blue;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 70;
-    transition: top 1s ease;
+  width: 100vw;
+  height: 100vh;
+  background-color: blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  transition: top 1s ease;
 }
 
 .menu_box {
-    position: absolute;
-    top: 20%;
-    left: 30%;
-    width: 40%;
-  
-    background-color: bisque;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
 
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content:space-around ;
-    padding: 10px;
+  background-color: bisque;
 
-    border-radius: 25px;
-    
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+
+  border-radius: 25px;
+
 }
-.menu_box .tittle{
-    font-size: 50px;
+
+.menu_box .tittle {
+  font-size: 50px;
 }
+
 /* char selection */
 .selection_overlay {
   position: fixed;
@@ -59,6 +62,7 @@ body {
   display: flex;
 
 }
+
 .selection_banner {
   position: absolute;
   top: 0;
@@ -69,14 +73,19 @@ body {
 
   background-color: #e68453;
 
-  overflow: hidden; /* hide all scrollbars and overflow */
+  overflow: hidden;
+  /* hide all scrollbars and overflow */
   white-space: nowrap;
 
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
+
 .selection_banner::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .banner_tekst {
@@ -90,3 +99,71 @@ body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   position: relative;
 }
+
+/* shop */
+
+/* play area */
+.playarea {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: red; */
+}
+
+.controls {
+  position: absolute;
+  top: 70vh;
+  left: 0;
+  z-index: 20;
+
+  width: 100vw;
+  height: 30vh;
+  background-color: aqua;
+}
+
+.chararea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 70vh;
+}
+
+.areas:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: darkgreen
+}
+
+.areas:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background-color: darkred;
+}
+
+/* .allyarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: darkgreen;
+}
+
+.enemyarea {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background-color: darkred;
+} */
