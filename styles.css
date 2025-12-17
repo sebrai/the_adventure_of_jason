@@ -149,12 +149,27 @@ body {
   width: 50%;
   height: 100%;
   background-color: darkred;
+  transform: scaleX(-1);
 }
 .areas .char_indiv:nth-child(1){
-  top: 33%;
+  top: 30%;
   left: 66%;
 }
-
+.areas .char_indiv:nth-child(2){
+  top: 1%;
+  left: 33%;
+}
+.areas .char_indiv:nth-child(3){
+  top: 50%;
+  left: 33%;
+}
+.areas .char_indiv:nth-child(4){
+  top: 30%;
+  left: 1%;
+}
+.areas:nth-child(2) .char_indiv{
+  transform: scaleX(-1);
+}
 
 
 
