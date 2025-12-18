@@ -193,5 +193,5 @@ body {
 }
 .char_indiv div:nth-child(1) div{
   background-color: greenyellow;
-  transition: width 1s ease-out;
+  transition: all 1s ease-out;
 }

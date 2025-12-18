@@ -41,9 +41,35 @@ let jason = {
                 type:"none"
             },
             func: (targ,self)=>{
-                targ.hero.hp
+                targ.hero.current.hp -= getdmg(0,self)
+                animationQueue.add(new animation_que_item(()=>{
+                    sethp(targ)
+                    waitForMotion(targ.body.hp_current,{transitionProperty:"width",timeout:1000})
+                },targ.body.hp_current))
             }
-        },{},{},{}
+        },{
+            dmg:30,
+            cost:5,
+            range:"melee",
+            type:"slash",
+            target:"enemy",
+            eff: {
+                power:20,
+                duration:1,
+                targ:"targ",
+                type:"bleed"
+            },
+            func: (targ,self)=>{
+                targ.hero.current.hp -= getdmg(0,self)
+                animationQueue.add(new animation_que_item(()=>{
+                    sethp(targ)
+                    waitForMotion(targ.body.hp_current,{transitionProperty:"width",timeout:1000})
+                },targ.body.hp_current))
+                
+            }
+        },{
+
+        }
     ],
 
 

@@ -2,19 +2,19 @@
 const animationQueue = {
   items: [],
   running: false,
-  
+  auto_run:false,
 
   add(item) {
-    this.items.push(item);
-    if (!this.running) this.run();
+    this.items.push(item)
+    if (!this.running && this.auto_run) this.run()
   },
 
   async run() {
-    this.running = true;
+    this.running = true
 
     while (this.items.length > 0) {
-      const item = this.items.shift();
-      await item.do();
+      const item = this.items.shift()
+      await item.do()
       console.log("animation on item:", item.target)
     }
 
