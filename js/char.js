@@ -48,7 +48,7 @@ let jason = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.index, self))
+                take_dmg(target, getdmg(this.dmg, self))
                 if (this.status_eff.apply) {
                         apply_effect(target, this.status_eff.statusobjekt)
                     }
@@ -69,7 +69,7 @@ let jason = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.index, self))
+                take_dmg(target, getdmg(this.dmg, self))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -110,8 +110,6 @@ let jason = {
             self.hero.current.crit_chance += 1
         }
     },
-
-
-   b            
+        
 }  
 console.log("char loaded")

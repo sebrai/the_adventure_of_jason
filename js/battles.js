@@ -12,8 +12,8 @@ const test_enemy4 = new enemy(jason)
 function take_dmg(target, dmg) {
     target.hero.current.hp -= dmg
     animationQueue.add(new animation_que_item(() => {
-        sethp(target)
-        waitForMotion(target.body.hp_current, { transitionProperty: "width", timeout: 1000 })
+       return sethp(target)
+        
     }, target.body.hp_current))
 }
 

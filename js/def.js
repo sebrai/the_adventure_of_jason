@@ -22,8 +22,8 @@ function rng(max = 100, min = 0) {
     let r = Math.floor(Math.random() * (max + 1)) + min
     return r
 }
-function getdmg(attack_num,user) {
-    let dmg = user.hero.attacks[attack_num].dmg
+function getdmg(dmg,user) {
+    
     for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
         const element = user.hero.current.dmg_buffs[index];
         if (element.order == 1){
@@ -43,6 +43,7 @@ function getdmg(attack_num,user) {
     else{
         // non crit dmg effect
     }
+    console.log(dmg)
     return dmg;
 
 }
