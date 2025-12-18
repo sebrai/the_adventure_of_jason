@@ -3,10 +3,10 @@ const main_player = new ally(jason);
 const main_player2 = new ally(jason);
 const main_player3 = new ally(jason);
 const main_player4 = new ally(jason);
-const test_enemy1 = new enemy(jason)
-const test_enemy2 = new enemy(jason)
-const test_enemy3 = new enemy(jason)
-const test_enemy4 = new enemy(jason)
+const test_enemy1 = new enemy(pirate)
+const test_enemy2 = new enemy(pirate)
+const test_enemy3 = new enemy(pirate)
+const test_enemy4 = new enemy(pirate)
 
 // general
 function take_dmg(target, dmg) {
@@ -28,10 +28,12 @@ function do_status(target) {
     switch (status_objekt.key) {
         case "bleed":
             take_dmg(target, status_objekt.power)
-
+        target.hero.current.crit_chance = 0
             break;
         case "poison":
-
+            take_dmg(target, status_objekt.power)
+            status_objekt.power *= 1.5
+            Math.round(status_objekt.power)
             break
         case "burn":
 
@@ -40,7 +42,7 @@ function do_status(target) {
 
             break
         case "locked in":
-
+        target.hero.current.crit_chance += status_objekt.power
             break
         case "stuned":
 
