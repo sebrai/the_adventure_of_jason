@@ -34,7 +34,7 @@ class enemy {
         this.status = {
             power: null,
             duration: null,
-            type: null
+            key: null
         }
     }
 }
@@ -51,6 +51,11 @@ class ally {
         this.hero = { ...type }
         this.body = new html_body(this, true)
         this.jason = (this.hero.key == "jason")
+        this.status = {
+            power: null,
+            duration: null,
+            key: null
+        }
     }
 }
 

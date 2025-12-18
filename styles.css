@@ -181,6 +181,7 @@ body {
   aspect-ratio: 1/1;
   background-color: bisque;
   position: absolute;
+  user-select: none;
  }
 .char_indiv img{
   max-width: 100%;
