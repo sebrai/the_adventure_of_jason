@@ -36,6 +36,7 @@ class enemy {
             duration: null,
             key: null
         }
+        enemylist.push(this)
     }
 }
 class animation_que_item {
@@ -56,6 +57,7 @@ class ally {
             duration: null,
             key: null
         }
+        allylist.push(this)
     }
 }
 

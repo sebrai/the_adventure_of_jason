@@ -10,7 +10,8 @@ const controls_area = document.getElementById("controls")
 // globals (important)
 let key_incrementor = 0
 let control_lock = false
-
+const allylist = []
+const enemylist = []
 // global functions
 function getkey() {
     key_incrementor++
@@ -34,6 +35,13 @@ function getdmg(attack_num,user) {
         else if (element.order == 3){
             dmg ^= element.value
         }
+    }
+    if (user.hero.current.crit_chance >= rng()){
+        dmg *= 1.5
+        // add animation for crit
+    }
+    else{
+        // non crit dmg effect
     }
     return dmg;
 
