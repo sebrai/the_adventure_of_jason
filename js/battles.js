@@ -1,8 +1,6 @@
 // test stuff
-const main_player = new ally(jason);
-const main_player2 = new ally(jason);
-const main_player3 = new ally(jason);
-const main_player4 = new ally(jason);
+let main_player;
+
 const test_enemy1 = new enemy(pirate)
 const test_enemy2 = new enemy(pirate)
 const test_enemy3 = new enemy(pirate)

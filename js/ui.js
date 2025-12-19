@@ -91,5 +91,12 @@ function start_header_animation() {
 
     requestAnimationFrame(step);
 }
+for (let index = 0; index < charlist.length; index++) {
+    const element = charlist[index];
+    const main = document.createElement("div")
+    const tittle = document.createElement("h1")
+    tittle.textContent = element.name
+    
+}
 
 console.log("ui loaded")
