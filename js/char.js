@@ -30,7 +30,7 @@ let jason = {
         },
         aspect: 0
     },
-    sprites: ["../assets/temp/funny dog.jpg"],// add sprites when created
+    sprites: ["/temp/funny dog.jpg"],// add sprites when created
     attacks: [
         {
             dmg: 40,
@@ -112,4 +112,5 @@ let jason = {
     },
         
 }  
+const charlist = [jason]
 console.log("char loaded")

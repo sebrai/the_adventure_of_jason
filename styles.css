@@ -52,10 +52,10 @@ body {
   left: 0;
   top: 0;
 
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
-  /* background-image: url(); */
+  background-image: url("./assets/backgrounds/temp/char.jpg");
   background-color: blueviolet;
   background-size: 70vw;
 
@@ -67,6 +67,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 50;
 
   width: 100vw;
   height: 15%;
@@ -151,30 +152,35 @@ body {
   background-color: darkred;
   transform: scaleX(-1);
 }
-.areas .char_indiv:nth-child(1){
+
+.areas .char_indiv:nth-child(1) {
   top: 30%;
   left: 66%;
 }
-.areas .char_indiv:nth-child(2){
+
+.areas .char_indiv:nth-child(2) {
   top: 1%;
   left: 33%;
 }
-.areas .char_indiv:nth-child(3){
+
+.areas .char_indiv:nth-child(3) {
   top: 50%;
   left: 33%;
 }
-.areas .char_indiv:nth-child(4){
+
+.areas .char_indiv:nth-child(4) {
   top: 30%;
   left: 1%;
 }
-.areas:nth-child(2) .char_indiv{
+
+.areas:nth-child(2) .char_indiv {
   transform: scaleX(-1);
 }
 
 
 
- .char_indiv{
-  display:  flex;
+.char_indiv {
+  display: flex;
   align-items: center;
   flex-direction: column;
   width: 30%;
@@ -182,17 +188,20 @@ body {
   background-color: bisque;
   position: absolute;
   user-select: none;
- }
-.char_indiv img{
+}
+
+.char_indiv img {
   max-width: 100%;
   max-height: 100%;
- 
+
 }
-.char_indiv div:nth-child(1){
+
+.char_indiv div:nth-child(1) {
 
   background-color: grey;
 }
-.char_indiv div:nth-child(1) div{
+
+.char_indiv div:nth-child(1) div {
   background-color: greenyellow;
   transition: all 1s ease-out;
 }

@@ -10,7 +10,7 @@ class html_body {
         this.whole.appendChild(this.hp_bar)
 
         this.sprite = document.createElement("img")
-        this.sprite.src = base.hero.sprites[base.hero.current.aspect]
+        this.sprite.src = "../assets/char" + base.hero.sprites[base.hero.current.aspect]
         this.whole.appendChild(this.sprite)
         this.whole.className = "char_indiv"
         if (ally) {
