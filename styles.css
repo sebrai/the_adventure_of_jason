@@ -60,7 +60,7 @@ body {
   background-size: 70vw;
 
   display: flex;
-
+transition: top 0.5s ease-out;
 }
 
 .selection_banner {
