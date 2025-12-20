@@ -9,6 +9,7 @@ start_btn.addEventListener("click", () => {
    }, menu_overlay))
    animationQueue.run()
    start_header_animation()
+   startGame();
 })
 
 // game logik inputs ----------------------------------------------------------

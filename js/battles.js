@@ -1,5 +1,13 @@
 // test stuff
-let main_player;
+let main_player; // accessible everywhere in this file
+
+async function startGame() {
+    main_player = await first_selection();
+    // continue game setup
+}
+
+
+
 
 const test_enemy1 = new enemy(pirate)
 const test_enemy2 = new enemy(pirate)

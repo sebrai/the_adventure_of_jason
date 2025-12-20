@@ -1,6 +1,7 @@
 let jason = {
     key: "jason",
     name: "Jason",
+    mainable: true,
     maxhp: 100,
     base_mana: 20,
     mana_gain: 5,

@@ -6,7 +6,8 @@ const char_area = document.getElementById("chararea")
 const ally_area = document.getElementById("allyarea")
 const enemy_area = document.getElementById("enemyarea")
 const controls_area = document.getElementById("controls")
-
+const selection_chars = document.getElementById("selection_chars")
+const selection_overlay = document.getElementById("char_over")
 // globals (important)
 let key_incrementor = 0
 let control_lock = false
@@ -22,25 +23,25 @@ function rng(max = 100, min = 0) {
     let r = Math.floor(Math.random() * (max + 1)) + min
     return r
 }
-function getdmg(dmg,user) {
-    
+function getdmg(dmg, user) {
+
     for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
         const element = user.hero.current.dmg_buffs[index];
-        if (element.order == 1){
+        if (element.order == 1) {
             dmg += element.value
         }
         else if (element.order == 2) {
             dmg *= element.value
         }
-        else if (element.order == 3){
+        else if (element.order == 3) {
             dmg ^= element.value
         }
     }
-    if (user.hero.current.crit_chance >= rng()){
+    if (user.hero.current.crit_chance >= rng()) {
         dmg *= 1.5
         // add animation for crit
     }
-    else{
+    else {
         // non crit dmg effect
     }
     console.log(dmg)

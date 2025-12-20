@@ -56,7 +56,7 @@ body {
   height: 100vh;
 
   background-image: url("./assets/backgrounds/temp/char.jpg");
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   background-size: 70vw;
 
   display: flex;
@@ -100,7 +100,23 @@ body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   position: relative;
 }
+.selection_chars{
+  position: absolute;
+  top: 20vh;
+  left: 2vw;
 
+  width: 96vw;
+  height: 75vh;
+
+  background-color: green;
+}
+.selection_chars div{
+  max-height: 45%;
+
+}
+.selection_chars div img{
+  max-height: 70px;
+}
 /* shop */
 
 /* play area */

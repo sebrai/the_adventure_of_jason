@@ -1,26 +1,26 @@
 //  general ---------------------------
 const animationQueue = {
-  items: [],
-  running: false,
-  auto_run:false,
+    items: [],
+    running: false,
+    auto_run: false,
 
-  add(item) {
-    this.items.push(item)
-    if (!this.running && this.auto_run) this.run()
-  },
+    add(item) {
+        this.items.push(item)
+        if (!this.running && this.auto_run) this.run()
+    },
 
-  async run() {
-    this.running = true
+    async run() {
+        this.running = true
 
-    while (this.items.length > 0) {
-      const item = this.items.shift()
-      await item.do()
-      console.log("animation on item:", item.target)
+        while (this.items.length > 0) {
+            const item = this.items.shift()
+            await item.do()
+            console.log("animation on item:", item.target)
+        }
+
+        this.running = false;
+        control_lock = false
     }
-
-    this.running = false;
-    control_lock = false
-  }
 };
 
 // async function untangle_que(animation_que) {
@@ -91,12 +91,28 @@ function start_header_animation() {
 
     requestAnimationFrame(step);
 }
-for (let index = 0; index < charlist.length; index++) {
-    const element = charlist[index];
-    const main = document.createElement("div")
-    const tittle = document.createElement("h1")
-    tittle.textContent = element.name
-    
+async function first_selection() {
+    return new Promise(resolve => {
+        for (let index = 0; index < charlist.length; index++) {
+            const element = charlist[index];
+            if (element.mainable) {
+                const main = document.createElement("div")
+                const tittle = document.createElement("h1")
+                tittle.textContent = element.name
+                const display = document.createElement("img")
+                display.alt = element.name + ": picture"
+                display.src = "../assets/char" + element.sprites[element.current.aspect]
+                const btn = document.createElement("button")
+                btn.textContent = "select"
+                main.append(tittle, display, btn);
+                btn.addEventListener("click", () => {
+                    resolve(new ally(element))
+                    selection_overlay.style.top = -100 + "vh"
+                })
+                selection_chars.appendChild(main)
+            }
+        }
+    })
 }
 
 console.log("ui loaded")
