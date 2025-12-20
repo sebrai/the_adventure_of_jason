@@ -95,7 +95,7 @@ async function first_selection() {
     return new Promise(resolve => {
         for (let index = 0; index < charlist.length; index++) {
             const element = charlist[index];
-            if (element.mainable) {
+            if (element.starter) {
                 const main = document.createElement("div")
                 const tittle = document.createElement("h1")
                 tittle.textContent = element.name
@@ -106,7 +106,7 @@ async function first_selection() {
                 btn.textContent = "select"
                 main.append(tittle, display, btn);
                 btn.addEventListener("click", () => {
-                    resolve(new ally(element))
+                    resolve(new ally(element,"tf2 coconut"))
                     selection_overlay.style.top = -100 + "vh"
                 })
                 selection_chars.appendChild(main)

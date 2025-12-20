@@ -30,7 +30,7 @@ class enemy {
         this.key = getkey()
         this.hero = { ...type }
         this.body = new html_body(this, false)
-        this.jason = false
+        this.main = false
         this.status = {
             power: null,
             duration: null,
@@ -47,11 +47,11 @@ class animation_que_item {
 }
 
 class ally {
-    constructor(type) {
+    constructor(type,main = false) {
         this.key = getkey()
         this.hero = { ...type }
         this.body = new html_body(this, true)
-        this.jason = (this.hero.key == "jason")
+        this.main = Boolean(main)
         this.status = {
             power: null,
             duration: null,
