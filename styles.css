@@ -60,7 +60,7 @@ body {
   background-size: 70vw;
 
   display: flex;
-transition: top 0.5s ease-out;
+  transition: top 0.5s ease-out;
 }
 
 .selection_banner {
@@ -100,7 +100,8 @@ transition: top 0.5s ease-out;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   position: relative;
 }
-.selection_chars{
+
+.selection_chars {
   position: absolute;
   top: 20vh;
   left: 2vw;
@@ -110,13 +111,16 @@ transition: top 0.5s ease-out;
 
   background-color: green;
 }
-.selection_chars div{
+
+.selection_chars div {
   max-height: 45%;
 
 }
-.selection_chars div img{
+
+.selection_chars div img {
   max-height: 70px;
 }
+
 /* shop */
 
 /* play area */
@@ -160,13 +164,14 @@ transition: top 0.5s ease-out;
 }
 
 .areas:nth-child(2) {
-  position: absolute;
-  top: 0;
+  /* position: absolute;
+  top: 0; */
   left: 50%;
-  width: 50%;
-  height: 100%;
+  /* width: 50%;
+  height: 100%; */
   background-color: darkred;
   transform: scaleX(-1);
+
 }
 
 .areas .char_indiv:nth-child(1) {
@@ -189,6 +194,12 @@ transition: top 0.5s ease-out;
   left: 1%;
 }
 
+.areas .char_indiv:nth-child(n+5) {
+  top: 30%;
+  left: -30%;
+  display: none;
+}
+
 .areas:nth-child(2) .char_indiv {
   transform: scaleX(-1);
 }
@@ -204,6 +215,7 @@ transition: top 0.5s ease-out;
   background-color: bisque;
   position: absolute;
   user-select: none;
+  transition: top 1s ease;
 }
 
 .char_indiv img {

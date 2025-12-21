@@ -1,5 +1,5 @@
 // test stuff
-let main_player; // accessible everywhere in this file
+let main_player;
 
 async function startGame() {
     main_player = await first_selection();
@@ -13,6 +13,7 @@ const test_enemy1 = new enemy(pirate)
 const test_enemy2 = new enemy(pirate)
 const test_enemy3 = new enemy(pirate)
 const test_enemy4 = new enemy(pirate)
+const test_enemy5 = new enemy(pirate)
 
 // general
 function take_dmg(target, dmg) {
