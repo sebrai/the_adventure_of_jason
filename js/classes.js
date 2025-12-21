@@ -28,7 +28,7 @@ class html_body {
 class enemy {
     constructor(type) {
         this.key = getkey()
-        this.hero = { ...type }
+        this.hero = { ...type, current: { ...type.current } }
         this.body = new html_body(this, false)
         this.main = false
         this.status = {
@@ -47,9 +47,9 @@ class animation_que_item {
 }
 
 class ally {
-    constructor(type,main = false) {
+    constructor(type, main = false) {
         this.key = getkey()
-        this.hero = { ...type }
+        this.hero = { ...type, current: {...type.current} }
         this.body = new html_body(this, true)
         this.main = Boolean(main)
         this.status = {
