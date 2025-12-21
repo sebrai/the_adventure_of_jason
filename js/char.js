@@ -106,10 +106,10 @@ let jason = {
             self.hero.crit_chance += 2
             self.hero.current.crit_chance += 2
         }
-        else if (context.on_status || context.get_hit){
-            self.hero.crit_chance += 1
-            self.hero.current.crit_chance += 1
-        }
+        // else if (context.on_status || context.get_hit){
+        //     self.hero.crit_chance += 1
+        //     self.hero.current.crit_chance += 1
+        // }
     },
         
 }  
