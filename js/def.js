@@ -23,27 +23,50 @@ function rng(max = 100, min = 0) {
     let r = Math.floor(Math.random() * (max + 1)) + min
     return r
 }
-function getdmg(dmg, user) {
-
-    for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
-        const element = user.hero.current.dmg_buffs[index];
-        if (element.order == 1) {
-            dmg += element.value
-        }
-        else if (element.order == 2) {
-            dmg *= element.value
-        }
-        else if (element.order == 3) {
-            dmg ^= element.value
-        }
-    }
-    if (user.hero.current.crit_chance >= rng()) {
-        dmg *= 1.5
-        // add animation for crit
+function try_critt(dmg,chance) {
+       
+    if (chance >= rng()) {
+         // add animation for crit
+        // text bubbles
+        return dmg * 1.5
     }
     else {
         // non crit dmg effect
+        return dmg
     }
+       
+}
+function getdmg(dmg, user, attack) {
+
+    for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
+        const element = user.hero.current.dmg_buffs[index];
+        const atk_type_match =
+            element.atk_type === "any" ||
+            attack.type === "any" ||
+            element.atk_type === attack.type;
+
+        const atk_range_match =
+            element.atk_range === "any" ||
+            attack.range === "any" ||
+            element.atk_range === attack.range;
+        
+        const atk_target_match =
+            element.atk_target === "any" ||
+            attack.target === element.atk_target;
+        
+        if (atk_type_match && atk_range_match && atk_target_match) {
+            if (element.order == 1) {
+                dmg += element.value
+            }
+            else if (element.order == 2) {
+                dmg *= element.value
+            }
+            else if (element.order == 3) {
+                dmg ^= element.value
+            }
+        }
+    }
+     try_critt(dmg,user.hero.current.critt_chance)
     console.log(dmg)
     return dmg;
 
