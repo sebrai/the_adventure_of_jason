@@ -2,7 +2,7 @@
 const animationQueue = {
     items: [],
     running: false,
-    auto_run: false,
+    auto_run: true,
 
     add(item) {
         this.items.push(item)

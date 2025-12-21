@@ -9,7 +9,7 @@ let pirate = {
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
-            potions: [],
+            temps: [],
             perms: [],
             equipables: {
                 armor: {
@@ -74,7 +74,7 @@ let pirate = {
         //     cost: 30,
         //     index:2,
         //     range: "self",
-        //     type: "magic",
+        //     type: "magick",
         //     target: "self",
         //     status_eff: {
         //         apply: true,

@@ -14,7 +14,7 @@ let jason = {
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
-            potions: [],
+            temps: [],
             perms: [],
             equipables: {
                 armor: {
@@ -80,7 +80,7 @@ let jason = {
             cost: 30,
             index:2,
             range: "self",
-            type: "magic",
+            type: "magick",
             target: "self",
             status_eff: {
                 apply: true,
@@ -90,13 +90,13 @@ let jason = {
                     key: "locked in",
                 }
             },
-            func: function (target, self) {
+            // func: function (target, self) {
                 // target.hero.current.hp -= getdmg(0, self)
                 
                 // if (this.status_eff.apply) {
                 //     apply_effect(target, this.status_eff.statusobjekt)
                 // }
-            }
+            // }
         }
     ],
 
@@ -133,7 +133,7 @@ let medea = {
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
-            potions: [],
+            temps: [],// medea starts with a few potions
             perms: [],
             equipables: {
                 armor: {
@@ -150,14 +150,14 @@ let medea = {
         },
         aspect: 0
     },
-    sprites: ["/temp/funny dog.jpg"],// add sprites when created
+    sprites: ["/temp/tomine.jpg"],// add sprites when created
     attacks: [
         {
-            dmg: 40,
+            dmg: 30,
             cost: 0,
             index:0,
-            range: "melee",
-            type: "slash",
+            range: "long",
+            type: "magick",
             target: "enemy",
             status_eff: {
                 apply: false,
@@ -174,18 +174,18 @@ let medea = {
                     }
             }
         }, {
-            dmg: 30,
+            dmg: 50,
             index:1,
             cost: 5,
-            range: "melee",
-            type: "slash",
+            range: "long",
+            type: "magick",
             target: "enemy",
             status_eff: {
                 apply: true,
                 statusobjekt: {
                     power: 10,
-                    duration: 1,
-                    key: "bleed"
+                    duration: 2,
+                    key: "sleep"
                 }
             },
             func: function (target, self) {
@@ -195,22 +195,24 @@ let medea = {
                 }
             }
         }, {
-            dmg: 0,
-            cost: 30,
+            dmg: 9999,
+            cost: 100,
             index:2,
-            range: "self",
-            type: "magic",
-            target: "self",
+            range: "close",
+            type: "magick",
+            target: "enemy",
             status_eff: {
-                apply: true,
+                apply: false,
                 statusobjekt: {
-                    power: 35,
-                    duration: 4,
-                    key: "locked in",
+                    power: null,
+                    duration: null,
+                    key: null,
                 }
             },
             func: function (target, self) {
-                // target.hero.current.hp -= getdmg(0, self)
+                if (target.status.key === "sleep" && !String(target.hero.key).startsWith('boss_')) {
+                take_dmg(target, getdmg(this.dmg, self, this))
+                }
                 
                 // if (this.status_eff.apply) {
                 //     apply_effect(target, this.status_eff.statusobjekt)
@@ -221,16 +223,12 @@ let medea = {
 
 
     ability: function (self, context = {}) {
-        if (context.end_wave) {
-            self.hero.crit_chance += 2
-            self.hero.current.crit_chance += 2
-        }
-        else if (context.on_status || context.get_hit){
-            self.hero.crit_chance += 1
-            self.hero.current.crit_chance += 1
-        }
+       if (context.get_hit && 50> rng()){
+        heal(self,0.3*context.dmg_dealt)
+       }
+       
     },
         
 }  
-const charlist = [jason]
+const charlist = [jason,medea]
 console.log("char loaded")

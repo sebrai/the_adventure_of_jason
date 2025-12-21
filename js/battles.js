@@ -18,12 +18,25 @@ const test_enemy5 = new enemy(pirate)
 // general
 function take_dmg(target, dmg) {
     target.hero.current.hp -= dmg
+    // hp minimum and deafeat logik
+
+    // passive abillity logik
+
     animationQueue.add(new animation_que_item(() => {
        return sethp(target)
         
     }, target.body.hp_current))
 }
+function heal(target,hp_to_heal) {
+    target.hero.current.hp += hp_to_heal
+    
+    // passive abillity logik
 
+     animationQueue.add(new animation_que_item(() => {
+       return sethp(target)
+        
+    }, target.body.hp_current))
+}
 // effects
 function apply_effect(target, effectobjekt = null) {
     target.status = effectobjekt
