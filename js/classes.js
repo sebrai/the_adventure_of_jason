@@ -49,7 +49,7 @@ class animation_que_item {
 class ally {
     constructor(type, main = false) {
         this.key = getkey()
-        this.hero = { ...type, current: {...type.current} }
+        this.hero = { ...type, current: { ...type.current } }
         this.body = new html_body(this, true)
         this.main = Boolean(main)
         this.status = {
@@ -60,7 +60,14 @@ class ally {
         allylist.push(this)
     }
 }
-
+class temp_item {
+    constructor(type, holder = main_player) {
+        this = { ...type }
+        this.key = getkey()
+        this.holder = holder
+        holder.hero.current.items.temps.push(this)
+    }
+}
 
 
 

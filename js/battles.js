@@ -27,7 +27,7 @@ function take_dmg(target, dmg) {
         
     }, target.body.hp_current))
 }
-function heal(target,hp_to_heal) {
+function heal(target,hp_to_heal = 10) {
     target.hero.current.hp += hp_to_heal
     
     // passive abillity logik
@@ -39,7 +39,7 @@ function heal(target,hp_to_heal) {
 }
 // effects
 function apply_effect(target, effectobjekt = null) {
-    target.status = effectobjekt
+    target.status = {...effectobjekt}
     // animations for status being applied
 }
 function do_status(target) {
