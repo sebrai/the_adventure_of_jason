@@ -40,6 +40,7 @@ let jason = {
             dmg: 40,
             cost: 0,
             index:0,
+            name: "slash",
             range: "melee",
             type: "slash",
             target: "enemy",
@@ -59,7 +60,9 @@ let jason = {
             }
         }, {
             dmg: 30,
+            cost:3,
             index:1,
+            name:"wounding slash",
             cost: 5,
             range: "melee",
             type: "slash",
@@ -82,6 +85,7 @@ let jason = {
             dmg: 0,
             cost: 30,
             index:2,
+            name:"main charchter syndrome",
             range: "self",
             type: "magick",
             target: "self",

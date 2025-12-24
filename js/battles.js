@@ -112,5 +112,26 @@ function turn_order(show = false) {
     }
     return all
 }
-
+async function getattack(attacker) {
+    return new Promise(resolve => {
+        while (controls_area.firstChild) {
+            controls_area.removeChild(controls_area.firstChild)
+        }
+        for (let index = 0; index < attacker.hero.attacks.length; index++) {
+            const element = attacker.hero.attacks[index];
+            let btn = document.createElement("button")
+            btn.textContent = element.name // add more details if nececeary
+            btn.addEventListener("click", () => {
+                open_close_controls()
+                resolve(element)
+            })
+            controls_area.appendChild(btn)
+        }
+        let itembtn = document.createElement("button")
+        itembtn.textContent = "use items"
+        itembtn.addEventListener("click",()=>{
+            // code to show items and to item effect
+        })
+    })
+}
 console.log("battles loaded")
