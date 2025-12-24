@@ -5,10 +5,11 @@
 
  const healing_potion = {
     key: "heal_potion",
-    name:"healing potion",
+    name:"Healing potion",
     desc: "",
     holder: null,
     power: 40,
+    // add a sprite
     do: function (target = this.holder) {
        heal(target,this.power) 
     }, 

@@ -6,11 +6,14 @@ let jason = {
     base_mana: 20,
     mana_gain: 5,
     crit_chance: 15,
+    char_speed: 50,
+    speed_base: null, 
     current: { // describes anything that changes
         hp: 100,
         mana: 20,
         mana_gain: 5,
         crit_chance: 15,
+        speed:null,
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
@@ -125,11 +128,14 @@ let medea = {
     base_mana: 50,
     mana_gain: 15,
     crit_chance: 5,
+    char_speed: 40,
+    speed_base:null,
     current: { // describes anything that changes
         hp: 80,
         mana: 50,
         mana_gain: 15,
         crit_chance: 5,
+        speed:null,
         dmg_buffs: [],
         sheild_buffs: [],
         items: {

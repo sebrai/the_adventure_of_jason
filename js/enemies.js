@@ -3,9 +3,12 @@ let pirate = {
     name: "pirate",
     maxhp: 80,
     crit_chance: 5,
+    char_speed: 45,
+    speed_base:null,
     current: { // describes anything that changes
         hp: 80,
         crit_chance: 5,
+        speed:null,
         dmg_buffs: [],
         sheild_buffs: [],
         items: {

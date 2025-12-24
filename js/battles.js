@@ -101,6 +101,13 @@ function end_turn() {
         }
     }
 }
-
+ function turn_order() {
+    const all =[...allylist,...enemylist].sort(function(a,b){return b.hero.current.speed -a.hero.current.speed})
+    // for (let index = 0; index < all.length; index++) {
+    //     const element = all[index];
+    //     console.log(element,element.hero.current.speed)
+    // }
+    return all
+ }
 
 console.log("battles loaded")

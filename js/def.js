@@ -20,7 +20,7 @@ function getkey() {
 }
 
 function rng(max = 100, min = 0) {
-    let r = Math.floor(Math.random() * (max + 1)) + min
+    let r = Math.floor(Math.random() * (max + 1 - min)) + min
     return r
 }
 function try_critt(dmg,chance) {
