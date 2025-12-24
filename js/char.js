@@ -97,13 +97,13 @@ let jason = {
                     key: "locked in",
                 }
             },
-            // func: function (target, self) {
-                // target.hero.current.hp -= getdmg(0, self)
+            func: function (target, self = undefined) {
+               
                 
-                // if (this.status_eff.apply) {
-                //     apply_effect(target, this.status_eff.statusobjekt)
-                // }
-            // }
+                if (this.status_eff.apply) {
+                    apply_effect(self ? self : target, this.status_eff.statusobjekt)
+                }
+            }
         }
     ],
 
@@ -164,8 +164,9 @@ let medea = {
     attacks: [
         {
             dmg: 30,
-            cost: 0,
+            cost: 5,
             index:0,
+            name: "magick shot",
             range: "long",
             type: "magick",
             target: "enemy",
@@ -187,6 +188,7 @@ let medea = {
             dmg: 50,
             index:1,
             cost: 5,
+            name:"bewitch",
             range: "long",
             type: "magick",
             target: "enemy",
@@ -208,6 +210,7 @@ let medea = {
             dmg: 9999,
             cost: 100,
             index:2,
+            name:"everlasting nightmare",
             range: "close",
             type: "magick",
             target: "enemy",

@@ -93,9 +93,9 @@ function start_header_animation() {
 }
 
 function open_close_controls() {
-   open = (controls_area.style.top == "70vh")
+   open = (controls_area.style.top == 70+"vh")
     if (open){
-        controls_area.style.top = 0
+        controls_area.style.top = "100vh"
     }
     else {
         controls_area.style.top = "70vh"
