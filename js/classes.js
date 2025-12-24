@@ -60,14 +60,7 @@ class ally {
         allylist.push(this)
     }
 }
-class temp_item {
-    constructor(type, holder = main_player) {
-        this = { ...type }
-        this.key = getkey()
-        this.holder = holder
-        holder.hero.current.items.temps.push(this)
-    }
-}
+
 
 
 

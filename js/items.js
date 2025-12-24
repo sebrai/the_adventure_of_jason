@@ -4,7 +4,7 @@
 // temps ---------------------------------------------
 
  const healing_potion = {
-    key: null,
+    key: "heal_potion",
     name:"healing potion",
     desc: "",
     holder: null,
