@@ -233,8 +233,19 @@ body {
   width: 100vw;
   height: 30vh;
   background-color: aqua;
+
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
+.controls button{
+  height: 90%;
+  width: 20%;
+
+}
 .controls button:nth-child(3-n){
 background-color: rgb(83, 83, 211);
 }
