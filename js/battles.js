@@ -23,23 +23,23 @@ function take_dmg(target, dmg) {
     // passive abillity logik
 
     animationQueue.add(new animation_que_item(() => {
-       return sethp(target)
-        
+        return sethp(target)
+
     }, target.body.hp_current))
 }
-function heal(target,hp_to_heal = 10) {
+function heal(target, hp_to_heal = 10) {
     target.hero.current.hp += hp_to_heal
-    
+
     // passive abillity logik
 
-     animationQueue.add(new animation_que_item(() => {
-       return sethp(target)
-        
+    animationQueue.add(new animation_que_item(() => {
+        return sethp(target)
+
     }, target.body.hp_current))
 }
 // effects
 function apply_effect(target, effectobjekt = null) {
-    target.status = {...effectobjekt}
+    target.status = { ...effectobjekt }
     // animations for status being applied
 }
 function do_status(target) {
@@ -48,7 +48,7 @@ function do_status(target) {
     switch (status_objekt.key) {
         case "bleed":
             take_dmg(target, status_objekt.power)
-        target.hero.current.crit_chance = 0
+            target.hero.current.crit_chance = 0
             break;
         case "poison":
             take_dmg(target, status_objekt.power)
@@ -62,7 +62,7 @@ function do_status(target) {
 
             break
         case "locked in":
-        target.hero.current.crit_chance += status_objekt.power
+            target.hero.current.crit_chance += status_objekt.power
             break
         case "stuned":
 
@@ -96,18 +96,21 @@ function end_turn() {
         const item = allylist[index];
         item.hero.current.mana += item.hero.current.mana_gain
         item.hero.current.crit_chance = item.hero.crit_chance
+        item.hero.current.speed = item.hero.speed_base
         if (item.status) {
             do_status(item)
         }
     }
 }
- function turn_order() {
-    const all =[...allylist,...enemylist].sort(function(a,b){return b.hero.current.speed -a.hero.current.speed})
-    // for (let index = 0; index < all.length; index++) {
-    //     const element = all[index];
-    //     console.log(element,element.hero.current.speed)
-    // }
+function turn_order(show = false) {
+    const all = [...allylist, ...enemylist].sort(function (a, b) { return b.hero.current.speed - a.hero.current.speed })
+    if (show) {
+        for (let index = 0; index < all.length; index++) {
+            const element = all[index];
+            console.log(element, element.hero.current.speed)
+        }
+    }
     return all
- }
+}
 
 console.log("battles loaded")
