@@ -8,6 +8,8 @@ const enemy_area = document.getElementById("enemyarea")
 const controls_area = document.getElementById("controls")
 const selection_chars = document.getElementById("selection_chars")
 const selection_overlay = document.getElementById("char_over")
+const item_over = document.getElementById("items_over")
+const item_area = document.getElementById("item_content")
 // globals (important)
 let key_incrementor = 0
 let control_lock = false
