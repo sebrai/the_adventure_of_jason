@@ -31,6 +31,7 @@ class enemy {
         this.hero = { ...type, current: { ...type.current } }
         this.body = new html_body(this, false)
         this.main = false
+        this.ally = false
         this.hero.speed_base = this.hero.char_speed + rng(4,-8)
         this.hero.current.speed = this.hero.speed_base
         this.status = {
@@ -54,6 +55,7 @@ class ally {
         this.hero = { ...type, current: { ...type.current } }
         this.body = new html_body(this, true)
         this.main = Boolean(main)
+        this.ally = true
         this.hero.speed_base = this.hero.char_speed + rng(10,-10)
         this.hero.current.speed = this.hero.speed_base
         this.status = {

@@ -42,12 +42,12 @@ function getdmg(dmg, user, attack) {
         const element = user.hero.current.dmg_buffs[index];
         const atk_type_match =
             element.atk_type === "any" ||
-            attack.type === "any" ||
+            // attack.type === "any" ||
             element.atk_type === attack.type;
 
         const atk_range_match =
             element.atk_range === "any" ||
-            attack.range === "any" ||
+            // attack.range === "any" ||
             element.atk_range === attack.range;
         
         const atk_target_match =

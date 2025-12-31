@@ -129,7 +129,7 @@ async function getattack(attacker) {
         }
         let itembtn = document.createElement("button")
         itembtn.textContent = "use items"
-        itembtn.addEventListener("click",()=>{
+        itembtn.addEventListener("click", () => {
             // code to show items and to item effect
         })
     })
