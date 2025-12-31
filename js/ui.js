@@ -92,15 +92,6 @@ function start_header_animation() {
     requestAnimationFrame(step);
 }
 
-function open_close_controls() {
-   open = (controls_area.style.top == 70+"vh")
-    if (open){
-        controls_area.style.top = "100vh"
-    }
-    else {
-        controls_area.style.top = "70vh"
-    }
-}
 async function first_selection() {
     return new Promise(resolve => {
         for (let index = 0; index < charlist.length; index++) {
