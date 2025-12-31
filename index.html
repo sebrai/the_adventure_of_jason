@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <!-- area for anim.css -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-   <!-- menu  -->
+    <!-- menu  -->
     <div class="menu_over" id="menu_over">
         <div class="menu_box">
             <h1 class="tittle">jj</h1>
@@ -17,46 +19,48 @@
             </div>
         </div>
     </div>
-   <!-- character selection -->
-    <div class="selection_overlay" id="char_over" >
-         <div class="selection_banner">
+    <!-- character selection -->
+    <div class="selection_overlay" id="char_over">
+        <div class="selection_banner">
             <h1 class="banner_tekst">please select your hero for this play-through </h1>
             <h1 class="banner_tekst">please select your hero for this play-through </h1> <!-- duplicate -->
         </div>
         <div class="selection_chars" id="selection_chars"></div>
     </div>
-   <!-- shop -->
-    
-   <!-- backpack -->
+    <!-- shop -->
+
+    <!-- backpack -->
 
     <div class="items_over" id="items_over">
         <div class="backpack" id="backpack">
-            <div class="pack_ux" id="pack_ux"> <button id="backpack_exit" class="backpack_exit">X</button></div>
+            <div class="pack_ux" id="pack_ux"> <button id="backpack_exit" class="backpack_exit"
+                    onclick="document.getElementById('items_over').style.display = 'none' ">X</button></div>
             <div class="noitem" id="item_content">there are no items</div>
         </div>
-     </div>
-
-   <!-- play area  -->
-<div class="playarea" id="playarea">
-    <div class="chararea" id="chararea">
-        <div class="areas" id="allyarea"></div>
-        <div class="areas" id="enemyarea"></div>
     </div>
-    <div class="controls" id="controls">
-        <button></button><button></button><button></button><button></button>
 
+    <!-- play area  -->
+    <div class="playarea" id="playarea">
+        <div class="chararea" id="chararea">
+            <div class="areas" id="allyarea"></div>
+            <div class="areas" id="enemyarea"></div>
+        </div>
+        <div class="controls" id="controls">
+            <!-- <button></button><button></button><button></button><button></button> -->
+
+        </div>
     </div>
-</div>
-   <!-- scripts -->
-<script src="js/def.js"></script>
-<script src="js/classes.js"></script>
-<script src="js/anim.js"></script>
-<script src="js/inputs.js"></script>
-<script src="js/items.js"></script>
-<script src="js/char.js"></script>
-<script src="js/enemies.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/battles.js"></script>
+    <!-- scripts -->
+    <script src="js/def.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="js/anim.js"></script>
+    <script src="js/inputs.js"></script>
+    <script src="js/items.js"></script>
+    <script src="js/char.js"></script>
+    <script src="js/enemies.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/battles.js"></script>
 
 </body>
+
 </html>

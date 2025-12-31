@@ -130,8 +130,19 @@ async function getattack(attacker) {
         let itembtn = document.createElement("button")
         itembtn.textContent = "use items"
         itembtn.addEventListener("click", () => {
-            // code to show items and to item effect
+            item_over.style.display = "block"
+            item_area.innerHTML = ""
+            if (attacker.hero.current.items.temps.length > 0) {
+                item_area.className = "yesitem"
+                // code to add item btns with logik
+                console.log("yes items")
+            } else {
+                item_area.className = "noitem"
+                item_area.appendChild(document.createTextNode(attacker.hero.name+" has no items"))
+                console.log("no item")
+            }
         })
+        controls_area.appendChild(itembtn)
         controls_area.style.top = "70vh"
     })
 }
