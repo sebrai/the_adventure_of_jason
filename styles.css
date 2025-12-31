@@ -123,6 +123,85 @@ body {
 
 /* shop */
 
+/* backpack */
+.items_over { display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(27, 22, 22, 0.6);
+  /* pointer-events: none; */
+}
+
+.backpack {
+  height: 70vh;
+  width: 60vw;
+
+  margin: 0 auto;
+  margin-top: 10vh;
+
+  background-image: url(assets/backgrounds/temp/char.jpg);
+  border: #e68453 solid 5px;
+  border-radius: 25px;
+
+  pointer-events: all;
+  position: relative;
+}
+
+.pack_ux {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 10%;
+}
+
+.pack_ux button {
+  position: inherit;
+
+  height: 80%;
+  aspect-ratio: 1/1;
+
+  top: 10%;
+  right: 2%;
+
+  color: red;
+  font-size: xx-large;
+  font-weight: bolder;
+  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.33);
+  background-color: #cfaa73;
+  border: none;
+}
+
+#item_content {
+  display: flex;
+  position: absolute;
+  top: 11%;
+  left: 1%;
+  width: 98%;
+  height: 88%;
+  background-color: #cfaa73;
+  border-radius: 15px;
+}
+
+.yesitem {
+  flex-flow: row wrap;
+
+}
+
+.noitem {
+  color: dimgray;
+  font-size: xx-large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  justify-content: center;
+  align-items: center;
+}
+
 /* play area */
 .playarea {
   position: fixed;
@@ -222,6 +301,7 @@ body {
   background-color: greenyellow;
   transition: all 1s ease-out;
 }
+
 /* controls -------------------------------------------------------------------------------------------*/
 
 .controls {
@@ -242,11 +322,12 @@ body {
   transition: top 0.5s ease;
 }
 
-.controls button{
+.controls button {
   height: 90%;
   width: 20%;
-background-color: rgb(83, 83, 211);
+  background-color: rgb(83, 83, 211);
 }
-.controls button:nth-child(n+4){
+
+.controls button:nth-child(n+4) {
   background-color: rgb(212, 103, 103);
 }
