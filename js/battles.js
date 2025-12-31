@@ -134,4 +134,74 @@ async function getattack(attacker) {
         })
     })
 }
+
+async function get_target(string, user = main_player) { // string is the attacks target attribute
+    switch (string) { // function is only called for allies
+        case "self":
+            return {
+                fail: false,
+                target: user
+            }
+            break;
+        case "enemy":
+            if (!enemylist.length){
+                console.error("no enemy to target")
+                return {
+                    fail:true,
+                    target: null
+                }
+            }
+            return new Promise(resolve => {
+                for (let index = 0; index < enemylist.length; index++) {
+                    const enemyitem = enemylist[index];
+                    enemyitem.body.whole.style.backgroundColor = "red" // replace with a better indicator latter
+                    enemyitem.body.sprite.addEventListener("click", () => {
+                        for (let jindex = 0; jindex < enemylist.length; jindex++) {
+                            const element = enemylist[jindex];
+                            element.body.whole.style.backgroundColor = "beige"
+                        }
+                        resolve({
+                            fail: false,
+                            target: enemyitem
+                        })
+                    })
+                }
+            })
+            break
+        case "ally":
+            if (allylist.length <= 1) { // function should be turned into a variable
+                console.error("no allies attack failed")
+                return {
+                    fail: true,
+                    target: null,
+                }
+            } // after return ask if (target.fail)
+            return new Promise(resolve => {
+                for (let index = 0; index < allylist.length; index++) {
+                    const allyitem = allylist[index];
+                    if (allyitem != user) {
+                        allyitem.body.whole.style.backgroundColor = "green" // replace with a better indicator latter
+                        allyitem.body.sprite.addEventListener("click", () => {
+                            for (let jindex = 0; jindex < allylist.length; jindex++) {
+                                const element = allylist[jindex];
+                                element.body.whole.style.backgroundColor = "beige"
+                            }
+                            resolve({
+                                fail: false,
+                                target: allyitem
+                            })
+                        })
+                    }
+                }
+            })
+            break
+        default:
+            console.error("attack used has", '"' + string + '"', "as its target attribute")
+            return {
+                fail:true,
+                target:null
+            }
+            break;
+    }
+}
 console.log("battles loaded")
