@@ -122,7 +122,7 @@ async function getattack(attacker) {
             let btn = document.createElement("button")
             btn.textContent = element.name // add more details if nececeary
             btn.addEventListener("click", () => {
-                open_close_controls()
+                controls_area.style.top = "100vh"
                 resolve(element)
             })
             controls_area.appendChild(btn)
@@ -132,6 +132,7 @@ async function getattack(attacker) {
         itembtn.addEventListener("click", () => {
             // code to show items and to item effect
         })
+        controls_area.style.top = "70vh"
     })
 }
 
@@ -203,5 +204,26 @@ async function get_target(string, user = main_player) { // string is the attacks
             }
             break;
     }
+}
+async function player_action(user = main_player, fails = 0) {
+    const attack = await getattack(user)
+    const targ_obj = await get_target(attack.target,user)
+    const target = targ_obj.target
+    if (targ_obj.fail){
+        // should tell the player that the attack failed
+        // then try again
+        if ( fails < 3) {
+            player_action(user,fails+1)
+        }
+        else {
+            // end their turn and tell player
+            return;
+        }
+    }
+    else {
+        attack.func(target,user)
+    }
+    
+
 }
 console.log("battles loaded")
