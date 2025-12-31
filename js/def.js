@@ -43,16 +43,16 @@ function getdmg(dmg, user, attack) {
         const atk_type_match =
             element.atk_type === "any" ||
             // attack.type === "any" ||
-            element.atk_type === attack.type;
+            element.atk_type.includes(attack.type);
 
         const atk_range_match =
             element.atk_range === "any" ||
             // attack.range === "any" ||
-            element.atk_range === attack.range;
+            element.atk_range(attack.range);
         
         const atk_target_match =
             element.atk_target === "any" ||
-            attack.target === element.atk_target;
+            attack.target(element.atk_target);
         
         if (atk_type_match && atk_range_match && atk_target_match) {
             if (element.order == 1) {
