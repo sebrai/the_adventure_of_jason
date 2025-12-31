@@ -1,4 +1,4 @@
-// test stuff
+// base stuff
 let main_player;
 
 async function startGame() {
