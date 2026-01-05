@@ -23,7 +23,7 @@ function take_dmg(target, dmg) {
     // passive abillity logik
 
     animationQueue.add(new animation_que_item(() => {
-        return sethp(target)
+        return sethp(target, target.hero.current.hp)
 
     }, target.body.hp_current))
 }
@@ -33,7 +33,7 @@ function heal(target, hp_to_heal = 10) {
     // passive abillity logik
 
     animationQueue.add(new animation_que_item(() => {
-        return sethp(target)
+        return sethp(target, target.hero.current.hp)
 
     }, target.body.hp_current))
 }
@@ -138,7 +138,7 @@ async function getattack(attacker) {
                 console.log("yes items")
             } else {
                 item_area.className = "noitem"
-                item_area.appendChild(document.createTextNode(attacker.hero.name+" has no items"))
+                item_area.appendChild(document.createTextNode(attacker.hero.name + " has no items"))
                 console.log("no item")
             }
         })
@@ -156,10 +156,10 @@ async function get_target(string, user = main_player) { // string is the attacks
             }
             break;
         case "enemy":
-            if (!enemylist.length){
+            if (!enemylist.length) {
                 console.error("no enemy to target")
                 return {
-                    fail:true,
+                    fail: true,
                     target: null
                 }
             }
@@ -210,21 +210,21 @@ async function get_target(string, user = main_player) { // string is the attacks
         default:
             console.error("attack used has", '"' + string + '"', "as its target attribute")
             return {
-                fail:true,
-                target:null
+                fail: true,
+                target: null
             }
             break;
     }
 }
 async function player_action(user = main_player, fails = 0) {
     const attack = await getattack(user)
-    const targ_obj = await get_target(attack.target,user)
+    const targ_obj = await get_target(attack.target, user)
     const target = targ_obj.target
-    if (targ_obj.fail){
+    if (targ_obj.fail) {
         // should tell the player that the attack failed
         // then try again
-        if ( fails < 3) {
-            player_action(user,fails+1)
+        if (fails < 3) {
+            player_action(user, fails + 1)
         }
         else {
             // end their turn and tell player
@@ -232,9 +232,9 @@ async function player_action(user = main_player, fails = 0) {
         }
     }
     else {
-        attack.func(target,user)
+        attack.func(target, user)
     }
-    
+
 
 }
 console.log("battles loaded")
