@@ -106,10 +106,18 @@ async function first_selection() {
                 const btn = document.createElement("button")
                 btn.textContent = "select"
                 main.append(tittle, display, btn);
-                btn.addEventListener("click", () => {
-                    resolve(new ally(element,"tf2 coconut"))
-                    selection_overlay.style.top = -100 + "vh"
-                })
+                console.log(unlocked_chars,element,unlocked_chars.includes(element))
+                if (unlocked_chars.includes(element)) {
+                    btn.addEventListener("click", () => {
+                        resolve(new ally(element, "tf2 coconut"))
+                        selection_overlay.style.top = -100 + "vh"
+                    })
+                }
+                else{
+                    display.style.filter = "grayscale(100%)"
+                    
+                }
+
                 selection_chars.appendChild(main)
             }
         }
