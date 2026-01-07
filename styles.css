@@ -216,7 +216,7 @@ body {
 
 .turns {
   position: absolute;
-  top: 5%;
+  top: -15%;
   left: 40%;
   border-radius: 45px;
   transition: top 1s ease-in-out, opacity 0.5s ease;
@@ -230,7 +230,7 @@ body {
 
 .waves {
   position: absolute;
-  top: 5%;
+  top: -15%;
   left: 51%;
   border-radius: 20px;
   transition: top 1s ease-in-out, opacity 0.5s ease;
