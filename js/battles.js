@@ -3,6 +3,7 @@ let main_player;
 
 async function startGame() {
     main_player = await first_selection();
+    wave()
     // continue game setup
 }
 
@@ -139,6 +140,10 @@ async function first_selection() {
         await do_turn()
         turn_end()
     }
+    allylist.forEach(element => {
+        wave_reset(element)
+    })
+    wave_count += 1
  }
 async function do_turn() {
     let order = turn_order(true)

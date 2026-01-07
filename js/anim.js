@@ -12,4 +12,7 @@ function open_close_controls(open = false) {
     }
     return waitForMotion(controls_area,{transitionProperty:"top",timeout:500 })
 }
+function turn_count() {
+    
+}
 console.log("anim loaded")

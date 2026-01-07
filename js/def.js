@@ -10,6 +10,8 @@ const selection_chars = document.getElementById("selection_chars")
 const selection_overlay = document.getElementById("char_over")
 const item_over = document.getElementById("items_over")
 const item_area = document.getElementById("item_content")
+const turns = document.getElementById("turns")
+const waves = document.getElementById("waves")
 // globals (important)
 let key_incrementor = 0
 let control_lock = false
