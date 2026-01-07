@@ -13,12 +13,15 @@ const test_enemy1 = new enemy(pirate)
 const test_enemy2 = new enemy(pirate)
 const test_enemy3 = new enemy(pirate)
 const test_enemy4 = new enemy(pirate)
-const test_enemy5 = new enemy(pirate)
+
 
 // general
 function take_dmg(target, dmg) {
     target.hero.current.hp -= dmg
-    // hp minimum and deafeat logik
+    if (target.hero.current.hp <= 0){
+        target.hero.current.hp = 0
+       kill(target)
+    }
 
     // passive abillity logik
 
@@ -29,13 +32,27 @@ function take_dmg(target, dmg) {
 }
 function heal(target, hp_to_heal = 10) {
     target.hero.current.hp += hp_to_heal
-
+    if (target.hero.current.hp > target.hero.maxhp) {
+        target.hero.current.hp = target.hero.maxhp
+    }
     // passive abillity logik
 
     animationQueue.add(new animation_que_item(() => {
         return sethp(target, target.hero.current.hp)
 
     }, target.body.hp_current))
+}
+function kill(target) {
+const list = target instanceof ally ? allylist : enemylist
+const bodies = target instanceof ally ? ally_area : enemy_area
+console.log(bodies)
+list.splice(list.indexOf(target),1)
+for (let index = 0; index < bodies.children.length; index++) {
+    const element = bodies.children[index];
+    if (element==target.body.whole) {
+        bodies.removeChild(element)
+    }
+}
 }
 // effects
 function apply_effect(target, effectobjekt = null) {
@@ -122,7 +139,9 @@ async function getattack(attacker) {
             let btn = document.createElement("button")
             btn.textContent = element.name // add more details if nececeary
             btn.addEventListener("click", () => {
-                controls_area.style.top = "100vh"
+                animationQueue.add(new animation_que_item(() => {
+            return open_close_controls(false)
+        }, controls_area))
                 resolve(element)
             })
             controls_area.appendChild(btn)
@@ -143,7 +162,9 @@ async function getattack(attacker) {
             }
         })
         controls_area.appendChild(itembtn)
-        controls_area.style.top = "70vh"
+        animationQueue.add(new animation_que_item(() => {
+            return open_close_controls(true)
+        }, controls_area))
     })
 }
 

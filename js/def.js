@@ -69,7 +69,7 @@ function getdmg(dmg, user, attack) {
         }
     }
      try_critt(dmg,user.hero.current.critt_chance)
-    console.log(dmg)
+    // console.log(dmg)
     return dmg;
 
 }
