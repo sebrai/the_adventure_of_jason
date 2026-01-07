@@ -39,6 +39,7 @@ class enemy {
             duration: null,
             key: null
         }
+        this.dead = false
         enemylist.push(this)
     }
 }
@@ -63,6 +64,7 @@ class ally {
             duration: null,
             key: null
         }
+        this.dead = false
         allylist.push(this)
     }
 }

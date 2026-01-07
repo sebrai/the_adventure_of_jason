@@ -13,6 +13,8 @@ const item_area = document.getElementById("item_content")
 // globals (important)
 let key_incrementor = 0
 let control_lock = false
+let wave_count = 1
+let turn_count = 1
 const allylist = []
 const enemylist = []
 // global functions

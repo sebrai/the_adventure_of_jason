@@ -9,10 +9,7 @@ async function startGame() {
 
 
 
-const test_enemy1 = new enemy(pirate)
-const test_enemy2 = new enemy(pirate)
-const test_enemy3 = new enemy(pirate)
-const test_enemy4 = new enemy(pirate)
+let enemy1;
 
 
 // general
@@ -43,9 +40,10 @@ function heal(target, hp_to_heal = 10) {
     }, target.body.hp_current))
 }
 function kill(target) {
+    target.dead = true // prevents it from attacking
 const list = target instanceof ally ? allylist : enemylist
 const bodies = target instanceof ally ? ally_area : enemy_area
-console.log(bodies)
+// console.log(bodies)
 list.splice(list.indexOf(target),1)
 for (let index = 0; index < bodies.children.length; index++) {
     const element = bodies.children[index];
@@ -133,11 +131,47 @@ async function first_selection() {
         }
     })
 }
+
+ async function wave(number= wave_count) {
+    console.log("wave:",number)
+    spawn_enemies(number)
+    while(enemylist.length){ // while wave not deafeated
+        await do_turn()
+        turn_end()
+    }
+ }
+async function do_turn() {
+    let order = turn_order(true)
+    for (let index = 0; index < order.length; index++) {
+        const element = order[index];
+        if (!element.dead){
+            if (element instanceof ally) {
+                 await player_action(element)
+            }
+            else {
+                // enemy action logik
+            }
+        }
+    }
+}
+
+function turn_end() {
+    
+}
+
+function spawn_enemies(wave) { 
+    // console.log("triggerd")
+    enemy1 = new enemy(pirate) // placeholder
+}
+
+
 function wave_reset(char) {
     char.hero.current.mana = char.hero.base_mana
     char.hero.current.crit_chance = char.hero.crit_chance
+    char.hero.current.hp = char.hero.maxhp
+    char.hero.current.speed = char.hero.speed_base
     apply_effect(char) // having no second parameter for apply sets the status to null
-    // add more if needed
+    turn_count = 1
 }
 function end_turn() {
     for (let index = 0; index < allylist.length; index++) {
