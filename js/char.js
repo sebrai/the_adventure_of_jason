@@ -187,7 +187,7 @@ let medea = {
         }, {
             dmg: 50,
             index:1,
-            cost: 5,
+            cost: 25,
             name:"bewitch",
             range: "long",
             type: "magick",
