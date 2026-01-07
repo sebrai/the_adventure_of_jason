@@ -92,36 +92,6 @@ function start_header_animation() {
     requestAnimationFrame(step);
 }
 
-async function first_selection() {
-    return new Promise(resolve => {
-        for (let index = 0; index < charlist.length; index++) {
-            const element = charlist[index];
-            if (element.starter) {
-                const main = document.createElement("div")
-                const tittle = document.createElement("h1")
-                tittle.textContent = element.name
-                const display = document.createElement("img")
-                display.alt = element.name + ": picture"
-                display.src = "../assets/char" + element.sprites[element.current.aspect]
-                const btn = document.createElement("button")
-                btn.textContent = "select"
-                main.append(tittle, display, btn);
-                // console.log(element,typeof(unlocked_chars))
-                if (unlocked_chars.includes(element.key)) {
-                    btn.addEventListener("click", () => {
-                        resolve(new ally(element, "tf2 coconut"))
-                        selection_overlay.style.top = -100 + "vh"
-                    })
-                }
-                else{
-                    display.style.filter = "grayscale(100%)"
-                    
-                }
 
-                selection_chars.appendChild(main)
-            }
-        }
-    })
-}
 
 console.log("ui loaded")
