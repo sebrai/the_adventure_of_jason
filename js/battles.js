@@ -49,7 +49,10 @@ list.splice(list.indexOf(target),1)
 for (let index = 0; index < bodies.children.length; index++) {
     const element = bodies.children[index];
     if (element==target.body.whole) {
-        bodies.removeChild(element)
+        animationQueue.add(new animation_que_item(()=>{
+             bodies.removeChild(element)
+            return;
+        },element)) 
     }
 }
 }
@@ -138,7 +141,7 @@ async function first_selection() {
     spawn_enemies(number)
     while(enemylist.length){ // while wave not deafeated
         await do_turn()
-        turn_end()
+        
     }
     allylist.forEach(element => {
         wave_reset(element)
@@ -146,6 +149,9 @@ async function first_selection() {
     wave_count += 1
  }
 async function do_turn() {
+    animationQueue.add(new animation_que_item(()=>{
+        return count_turn()
+    },turns))
     let order = turn_order(true)
     for (let index = 0; index < order.length; index++) {
         const element = order[index];
@@ -158,10 +164,12 @@ async function do_turn() {
             }
         }
     }
+    turn_end()
 }
 
 function turn_end() {
-    
+    // logik
+turn_count++
 }
 
 function spawn_enemies(wave) { 
