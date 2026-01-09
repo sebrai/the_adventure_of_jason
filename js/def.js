@@ -85,13 +85,10 @@ function getdmg(dmg, user, attack) {
 
         if (block_type_match && block_range_match && block_target_match) {
             if (element.order == 1) {
-                dmg += element.value
+                dmg -= element.value
             }
             else if (element.order == 2) {
-                dmg *= element.value
-            }
-            else if (element.order == 3) {
-                dmg ^= element.value
+                dmg /= element.value
             }
         }
     }
