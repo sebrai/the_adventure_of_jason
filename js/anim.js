@@ -12,17 +12,17 @@ function open_close_controls(open = false) {
     }
     return waitForMotion(controls_area, { transitionProperty: "top", timeout: 500 })
 }
-async function count_turn() {
-    turns.style.top = "5%"
-    turns.textContent = "turn: " + turn_count
-    return waitForMotion(turns, { transitionProperty: "top", timeout: 1000 })
+async function count(objekt = turns ? turns : waves ? waves : null) {
+    objekt.style.top = "5%"
+    objekt.textContent = objekt === turns ? "turn: " + turn_count : "wave: " + wave_count
+    return waitForMotion(objekt, { transitionProperty: "top", timeout: 1000 })
         .then(() => {
             setTimeout(() => {
-                turns.style.opacity = 0 + "%"
-                waitForMotion(turns, { transitionProperty: "opacity", timeout: 500 }).then(() => {
-                    turns.style.top = "-15%"
-                    waitForMotion(turns, { transitionProperty: "top", timeout: 1000 }).then(() => {
-                        turns.style.opacity = "100%"
+                objekt.style.opacity = 0 + "%"
+                waitForMotion(objekt, { transitionProperty: "opacity", timeout: 500 }).then(() => {
+                    objekt.style.top = "-15%"
+                    waitForMotion(objekt, { transitionProperty: "top", timeout: 1000 }).then(() => {
+                        objekt.style.opacity = "100%"
                     })
                 });
             }, 1000)

@@ -16,9 +16,9 @@ let enemy1;
 // general
 function take_dmg(target, dmg) {
     target.hero.current.hp -= dmg
-    if (target.hero.current.hp <= 0){
+    if (target.hero.current.hp <= 0) {
         target.hero.current.hp = 0
-       kill(target)
+        kill(target)
     }
 
     // passive abillity logik
@@ -42,19 +42,19 @@ function heal(target, hp_to_heal = 10) {
 }
 function kill(target) {
     target.dead = true // prevents it from attacking
-const list = target instanceof ally ? allylist : enemylist
-const bodies = target instanceof ally ? ally_area : enemy_area
-// console.log(bodies)
-list.splice(list.indexOf(target),1)
-for (let index = 0; index < bodies.children.length; index++) {
-    const element = bodies.children[index];
-    if (element==target.body.whole) {
-        animationQueue.add(new animation_que_item(()=>{
-             bodies.removeChild(element)
-            return;
-        },element)) 
+    const list = target instanceof ally ? allylist : enemylist
+    const bodies = target instanceof ally ? ally_area : enemy_area
+    // console.log(bodies)
+    list.splice(list.indexOf(target), 1)
+    for (let index = 0; index < bodies.children.length; index++) {
+        const element = bodies.children[index];
+        if (element == target.body.whole) {
+            animationQueue.add(new animation_que_item(() => {
+                bodies.removeChild(element)
+                return;
+            }, element))
+        }
     }
-}
 }
 // effects
 function apply_effect(target, effectobjekt = null) {
@@ -125,9 +125,9 @@ async function first_selection() {
                         selection_overlay.style.top = -100 + "vh"
                     })
                 }
-                else{
+                else {
                     display.style.filter = "grayscale(100%)"
-                    
+
                 }
 
                 selection_chars.appendChild(main)
@@ -136,28 +136,31 @@ async function first_selection() {
     })
 }
 
- async function wave(number= wave_count) {
-    console.log("wave:",number)
+async function wave(number = wave_count) {
+    // console.log("wave:",number)
     spawn_enemies(number)
-    while(enemylist.length){ // while wave not deafeated
+    animationQueue.add(new animation_que_item(() => {
+        return count(waves)
+    }, waves))
+    while (enemylist.length) { // while wave not deafeated
         await do_turn()
-        
+
     }
     allylist.forEach(element => {
         wave_reset(element)
     })
     wave_count += 1
- }
+}
 async function do_turn() {
-    animationQueue.add(new animation_que_item(()=>{
-        return count_turn()
-    },turns))
+    animationQueue.add(new animation_que_item(() => {
+        return count(turns)
+    }, turns))
     let order = turn_order(true)
     for (let index = 0; index < order.length; index++) {
         const element = order[index];
-        if (!element.dead){
+        if (!element.dead) {
             if (element instanceof ally) {
-                 await player_action(element)
+                await player_action(element)
             }
             else {
                 // enemy action logik
@@ -169,10 +172,10 @@ async function do_turn() {
 
 function turn_end() {
     // logik
-turn_count++
+    turn_count++
 }
 
-function spawn_enemies(wave) { 
+function spawn_enemies(wave) {
     // console.log("triggerd")
     enemy1 = new enemy(pirate) // placeholder
 }
@@ -202,7 +205,7 @@ function turn_order(show = false) {
     if (show) {
         for (let index = 0; index < all.length; index++) {
             const element = all[index];
-            console.log(element, element.hero.current.speed)
+            // console.log(element, element.hero.current.speed)
         }
     }
     return all
@@ -218,8 +221,8 @@ async function getattack(attacker) {
             btn.textContent = element.name // add more details if nececeary
             btn.addEventListener("click", () => {
                 animationQueue.add(new animation_que_item(() => {
-            return open_close_controls(false)
-        }, controls_area))
+                    return open_close_controls(false)
+                }, controls_area))
                 resolve(element)
             })
             controls_area.appendChild(btn)

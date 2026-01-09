@@ -218,7 +218,8 @@ body {
   position: absolute;
   top: -15%;
   left: 40%;
-  border-radius: 45px;
+  z-index: 15;
+  border-radius: 20px;
   transition: top 1s ease-in-out, opacity 0.5s ease;
   width: 9%;
   height: 10%;
@@ -232,6 +233,7 @@ body {
   position: absolute;
   top: -15%;
   left: 51%;
+  z-index: 15;
   border-radius: 20px;
   transition: top 1s ease-in-out, opacity 0.5s ease;
   width: 9%;
