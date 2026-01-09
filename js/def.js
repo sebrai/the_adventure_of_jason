@@ -29,21 +29,12 @@ function rng(max = 100, min = 0) {
     let r = Math.floor(Math.random() * (max + 1 - min)) + min
     return r
 }
-function try_critt(dmg,chance) {
-       
-    if (chance >= rng()) {
-         // add animation for crit
-        // text bubbles
-        return dmg * 1.5
-    }
-    else {
-        // non crit dmg effect
-        return dmg
-    }
-       
+function try_critt(chance) {
+ result = chance >= rng(100,1)
+ return result
 }
 function getdmg(dmg, user, attack) {
-
+ const critt = try_critt(attack.custom_critt ? attack.custom_critt : user.hero.current.crit_chance)
     for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
         const element = user.hero.current.dmg_buffs[index];
         const atk_type_match =
@@ -55,11 +46,11 @@ function getdmg(dmg, user, attack) {
             element.atk_range === "any" ||
             // attack.range === "any" ||
             element.atk_range(attack.range);
-        
+
         const atk_target_match =
             element.atk_target === "any" ||
             attack.target(element.atk_target);
-        
+
         if (atk_type_match && atk_range_match && atk_target_match) {
             if (element.order == 1) {
                 dmg += element.value
@@ -72,9 +63,37 @@ function getdmg(dmg, user, attack) {
             }
         }
     }
-     try_critt(dmg,user.hero.current.critt_chance)
-    // console.log(dmg)
-    return dmg;
+   if (critt) {
+    dmg *= attack.custom_critt_mult ? attack.custom_critt_mult : user.hero.crit_mult ? user.hero.crit_mult : 1.5
+   }
+   for (let index = 0; index < user.hero.current.sheild_buffs.length; index++) {
+        const element = user.hero.current.sheild_buffs_buffs[index];
+        const block_type_match =
+            element.block_type === "any" ||
+            // attack.type === "any" ||
+            element.block_type.includes(attack.type);
+
+        const block_range_match =
+            element.block_range === "any" ||
+            // attack.range === "any" ||
+            element.block_range(attack.range);
+
+        const block_target_match =
+            element.block_target === "any" ||
+            attack.target(element.block_target);
+
+        if (block_type_match && block_range_match && block_target_match) {
+            if (element.order == 1) {
+                dmg += element.value
+            }
+            else if (element.order == 2) {
+                dmg *= element.value
+            }
+            else if (element.order == 3) {
+                dmg ^= element.value
+            }
+        }
+    }
 
 }
 console.log("def loaded")

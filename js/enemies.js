@@ -3,6 +3,7 @@ let pirate = {
     name: "pirate",
     maxhp: 80,
     crit_chance: 5,
+    crit_mult:1.4,
     char_speed: 45,
     speed_base:null,
     current: { // describes anything that changes
