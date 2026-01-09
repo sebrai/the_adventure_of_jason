@@ -1,8 +1,18 @@
 // base stuff
 let main_player;
+let ally1;
+let ally2;
+let ally3;
+let enemy1;
+let enemy2;
+let enemy3;
+let enemy4;
 
 async function startGame() {
     main_player = await first_selection();
+    while (allylist.length) { // if you lose or win
+        
+    }
     wave()
     // continue game setup
 }
@@ -10,7 +20,7 @@ async function startGame() {
 
 
 
-let enemy1;
+
 
 
 // general
