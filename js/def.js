@@ -30,11 +30,11 @@ function rng(max = 100, min = 0) {
     return r
 }
 function try_critt(chance) {
- result = chance >= rng(100,1)
- return result
+    result = chance >= rng(100, 1)
+    return result
 }
 function getdmg(dmg, user, attack) {
- const critt = try_critt(attack.custom_critt ? attack.custom_critt : user.hero.current.crit_chance)
+    const critt = try_critt(attack.custom_critt ? attack.custom_critt : user.hero.current.crit_chance)
     for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
         const element = user.hero.current.dmg_buffs[index];
         const atk_type_match =
@@ -63,10 +63,11 @@ function getdmg(dmg, user, attack) {
             }
         }
     }
-   if (critt) {
-    dmg *= attack.custom_critt_mult ? attack.custom_critt_mult : user.hero.crit_mult ? user.hero.crit_mult : 1.5
-   }
-   for (let index = 0; index < user.hero.current.sheild_buffs.length; index++) {
+    if (critt) {
+        // critt dmg effect
+        dmg *= attack.custom_critt_mult ? attack.custom_critt_mult : user.hero.crit_mult ? user.hero.crit_mult : 1.5
+    }
+    for (let index = 0; index < user.hero.current.sheild_buffs.length; index++) {
         const element = user.hero.current.sheild_buffs_buffs[index];
         const block_type_match =
             element.block_type === "any" ||
@@ -94,6 +95,8 @@ function getdmg(dmg, user, attack) {
             }
         }
     }
+    // normal dmg effects
+    return dmg
 
 }
 console.log("def loaded")
