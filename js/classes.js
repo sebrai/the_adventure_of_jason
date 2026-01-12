@@ -73,6 +73,4 @@ class ally {
 
 
 
-
-
 console.log("classes loaded")
