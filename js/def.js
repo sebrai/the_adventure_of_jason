@@ -19,9 +19,6 @@ let wave_count = 1
 let turn_count = 1
 const allylist = []
 const enemylist = []
-const wave_info = [
-  
-]
 // global functions
 function getkey() {
     key_incrementor++

@@ -10,9 +10,6 @@ let enemy4;
 
 async function startGame() {
     main_player = await first_selection();
-    while (allylist.length) { // if you lose or win
-        
-    }
     wave()
     // continue game setup
 }
@@ -159,7 +156,7 @@ async function wave(number = wave_count) {
     allylist.forEach(element => {
         wave_reset(element)
     })
-    wave_count += 1
+    wave_count++
 }
 async function do_turn() {
     animationQueue.add(new animation_que_item(() => {
