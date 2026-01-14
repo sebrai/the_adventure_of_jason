@@ -32,7 +32,7 @@ class enemy {
         this.body = new html_body(this, false)
         this.main = false
         this.ally = false
-        this.hero.speed_base = this.hero.char_speed + rng(4,-8)
+        this.hero.speed_base = this.hero.char_speed + rng(4, -8)
         this.hero.current.speed = this.hero.speed_base
         this.status = {
             power: null,
@@ -57,7 +57,7 @@ class ally {
         this.body = new html_body(this, true)
         this.main = Boolean(main)
         this.ally = true
-        this.hero.speed_base = this.hero.char_speed + rng(10,-10)
+        this.hero.speed_base = this.hero.char_speed + rng(10, -10)
         this.hero.current.speed = this.hero.speed_base
         this.status = {
             power: null,
@@ -68,7 +68,23 @@ class ally {
         allylist.push(this)
     }
 }
+class tree_item {
+    constructor(type = "fight") {
+        this.title = type
+        this.getlogo = () => {
+            switch (type) {
+                case "shop":
+                    return "assets/char/temp/guard.jpg" // ikon for each
+                    break;
 
+                default:
+                    return "assets/char/temp/guard.jpg"
+                    break;
+            }
+        }
+        this.logo = this.getlogo()
+    }
+}
 
 
 
