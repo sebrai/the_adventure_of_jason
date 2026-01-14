@@ -13,6 +13,10 @@ async function startGame() {
     
     // continue game setup
     cur_region = prolog_R
+    cur_fight = prolog_R
+     while (allylist.length) {
+        await encounter()
+     }
 }
 
 
@@ -143,10 +147,23 @@ async function first_selection() {
         }
     })
 }
-
-async function wave(number = wave_count) {
+async function decide_path() {
+    return cur_fight.tree[0] // should return a chosen option
+}
+ async function encounter() {
+    cur_fight = await decide_path()
+    switch (cur_fight.type.title) {
+        case "fight":
+            await fight()
+            break;
+    
+        default:
+            break;
+    }
+ }
+async function fight(battle = fight_num) {
     // console.log("wave:",number)
-    spawn_enemies(number)
+   cur_fight.spawner()
     animationQueue.add(new animation_que_item(() => {
         return count(waves)
     }, waves))
@@ -157,7 +174,7 @@ async function wave(number = wave_count) {
     allylist.forEach(element => {
         wave_reset(element)
     })
-    wave_count++
+    fight_num++
 }
 async function do_turn() {
     animationQueue.add(new animation_que_item(() => {

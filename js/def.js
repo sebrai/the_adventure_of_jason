@@ -15,10 +15,10 @@ const waves = document.getElementById("waves")
 // globals (important)
 let key_incrementor = 0
 let control_lock = false
-let wave_count = 1
 let turn_count = 1
 let cur_region;
-let cur_fight = 1
+let cur_fight;
+let fight_num = 1
 const allylist = []
 const enemylist = []
 // global functions

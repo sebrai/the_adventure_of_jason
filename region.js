@@ -14,7 +14,7 @@ const prolog_R = {
         {
             type: new tree_item("fight"), // when choosing path display title and logo
             spawner: function () { // run spawner then run wave to lock player into combart
-                // what to spawn
+                enemy1 = new enemy(pirate)
             },
             tree: [
                 {
