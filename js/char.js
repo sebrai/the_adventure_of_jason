@@ -107,7 +107,16 @@ let jason = {
             }
         }
     ],
-
+    boon:{
+        logo: "",
+        charge: 0,
+        unlocked: false,
+        function: function(target = null,user = jason){
+            allylist.forEach(element => {
+                element.hero.current.crit_chance  += 15
+            });
+        }
+    },
 
     ability: function (self, context = {}) {
         if (context.end_wave) {

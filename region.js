@@ -2,6 +2,7 @@ const prolog_R = {
     key: "R_prolog",
     name: "the feilds of Iolcus",
     prefix: "feild:",
+    done: false,
     end: async function () {
         // await boss fight
         // sett to next region
