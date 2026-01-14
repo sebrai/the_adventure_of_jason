@@ -18,6 +18,7 @@ let control_lock = false
 let wave_count = 1
 let turn_count = 1
 let cur_region;
+let cur_fight = 1
 const allylist = []
 const enemylist = []
 // global functions

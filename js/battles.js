@@ -10,8 +10,9 @@ let enemy4;
 
 async function startGame() {
     main_player = await first_selection();
-    wave()
+    
     // continue game setup
+    cur_region = prolog_R
 }
 
 
