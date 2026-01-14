@@ -6,15 +6,15 @@ let jason = {
     base_mana: 20,
     mana_gain: 5,
     crit_chance: 15,
-    crit_mult:1.75,
+    crit_mult: 1.75,
     char_speed: 50,
-    speed_base: null, 
+    speed_base: null,
     current: { // describes anything that changes
         hp: 100,
         mana: 20,
         mana_gain: 5,
         crit_chance: 15,
-        speed:null,
+        speed: null,
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
@@ -40,7 +40,7 @@ let jason = {
         {
             dmg: 40,
             cost: 0,
-            index:0,
+            index: 0,
             name: "slash",
             range: "melee",
             type: "slash",
@@ -54,16 +54,16 @@ let jason = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self,this))
+                take_dmg(target, getdmg(this.dmg, self, this))
                 if (this.status_eff.apply) {
-                        apply_effect(target, this.status_eff.statusobjekt)
-                    }
+                    apply_effect(target, this.status_eff.statusobjekt)
+                }
             }
         }, {
             dmg: 30,
-            cost:3,
-            index:1,
-            name:"wounding slash",
+            cost: 3,
+            index: 1,
+            name: "wounding slash",
             cost: 5,
             range: "melee",
             type: "slash",
@@ -77,7 +77,7 @@ let jason = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self,this))
+                take_dmg(target, getdmg(this.dmg, self, this))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -85,8 +85,8 @@ let jason = {
         }, {
             dmg: 0,
             cost: 30,
-            index:2,
-            name:"main charchter syndrome",
+            index: 2,
+            name: "main charchter syndrome",
             range: "self",
             type: "magick",
             target: "self",
@@ -99,23 +99,25 @@ let jason = {
                 }
             },
             func: function (target, self = undefined) {
-               
-                
+
+
                 if (this.status_eff.apply) {
                     apply_effect(self ? self : target, this.status_eff.statusobjekt)
                 }
             }
         }
     ],
-    boon:{
+    boon: {
         logo: "",
         charge: 0,
+        req: 150 ,
         unlocked: false,
-        function: function(target = null,user = jason){
+        from: "Hera",
+        func: function (target = null, user = null) {
             allylist.forEach(element => {
-                element.hero.current.crit_chance  += 15
+                element.hero.current.crit_chance += 15
             });
-        }
+        },
     },
 
     ability: function (self, context = {}) {
@@ -128,8 +130,8 @@ let jason = {
         //     self.hero.current.crit_chance += 1
         // }
     },
-        
-}  
+
+}
 
 
 
@@ -144,13 +146,13 @@ let medea = {
     crit_chance: 5,
     crit_mult: 1.4,
     char_speed: 40,
-    speed_base:null,
+    speed_base: null,
     current: { // describes anything that changes
         hp: 80,
         mana: 50,
         mana_gain: 15,
         crit_chance: 5,
-        speed:null,
+        speed: null,
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
@@ -176,7 +178,7 @@ let medea = {
         {
             dmg: 30,
             cost: 5,
-            index:0,
+            index: 0,
             name: "magick shot",
             range: "long",
             type: "magick",
@@ -192,14 +194,14 @@ let medea = {
             func: function (target, self) {
                 take_dmg(target, getdmg(this.dmg, self, this))
                 if (this.status_eff.apply) {
-                        apply_effect(target, this.status_eff.statusobjekt)
-                    }
+                    apply_effect(target, this.status_eff.statusobjekt)
+                }
             }
         }, {
             dmg: 50,
-            index:1,
+            index: 1,
             cost: 25,
-            name:"bewitch",
+            name: "bewitch",
             range: "long",
             type: "magick",
             target: "enemy",
@@ -220,8 +222,8 @@ let medea = {
         }, {
             dmg: 9999,
             cost: 100,
-            index:2,
-            name:"everlasting nightmare",
+            index: 2,
+            name: "everlasting nightmare",
             range: "close",
             type: "magick",
             target: "enemy",
@@ -235,24 +237,33 @@ let medea = {
             },
             func: function (target, self) {
                 if (target.status.key === "sleep" && !String(target.hero.key).startsWith('boss_')) {
-                take_dmg(target, getdmg(this.dmg, self, this))
+                    take_dmg(target, getdmg(this.dmg, self, this))
                 }
-                
+
                 // if (this.status_eff.apply) {
                 //     apply_effect(target, this.status_eff.statusobjekt)
                 // }
             }
         }
     ],
-
-
-    ability: function (self, context = {}) {
-       if (context.get_hit && 50> rng()){
-        heal(self,0.3*context.dmg_dealt)
-       }
-       
+     boon: {
+        logo: "",
+        charge: 0,
+        req: 200,
+        unlocked: false,
+        from:"Helios",
+        dmg: 100,
+        func: function (target = null, user = null) {
+            take_dmg(target,this.dmg)
+        },
     },
-        
-}  
-const charlist = [jason,medea]
+    ability: function (self, context = {}) {
+        if (context.get_hit && 50 > rng()) {
+            heal(self, 0.3 * context.dmg_dealt)
+        }
+
+    },
+
+}
+const charlist = [jason, medea]
 console.log("char loaded")
