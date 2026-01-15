@@ -68,25 +68,41 @@ class ally {
         allylist.push(this)
     }
 }
-class tree_item {
-    constructor(type = "fight") {
-        this.title = type
-        this.getlogo = () => {
-            switch (type) {
-                case "shop":
-                    return "assets/char/temp/guard.jpg" // ikon for each
-                    break;
-
-                default:
-                    return "assets/char/temp/guard.jpg"
-                    break;
+class fight {
+    constructor(next, enemies,  bossfight= false, startanim, endanim) {
+        this.type = !bossfight ? "fight" : "bossfight"
+        this.logo = "./assets/icons/" + (!bossfight ? "fight" : "boss_fight" )+ ".png"
+        this.start = async () => {
+            if (startanim) {
+                await startanim()
             }
+            for (let index = 0; index < enemies.length; index++) {
+                const element = enemies[index];
+                base_enemies[index] =new enemy(element)
+            }
+            console.log("spwned: ", enemies, "enemy list: ", enemylist)
         }
-        this.logo = this.getlogo()
+        this.end_animation = endanim
+        this.next = next
     }
 }
 
+class shop {
+    constructor(next, items) {
+        this.type = "shop"
+        this.logo = "./assets/icons/shop.png"
+        this.items = items
+        this.next = next
+    }
+}
 
-
+class event {
+    constructor(next, afunc= async function () {}) {
+        this.type = "event"
+        this.logo = "./assets/icons/event.png"
+        this. start = afunc 
+        this.next = next
+    }
+}
 
 console.log("classes loaded")
