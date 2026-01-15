@@ -12,6 +12,8 @@ const item_over = document.getElementById("items_over")
 const item_area = document.getElementById("item_content")
 const turns = document.getElementById("turns")
 const waves = document.getElementById("waves")
+const pathsover = document.getElementById("pathsover")
+const paths_container = document.getElementById("paths_bx")
 // globals (important)
 let key_incrementor = 0
 let control_lock = false

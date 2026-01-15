@@ -14,7 +14,7 @@ async function startGame() {
 
     // continue game setup
     cur_region = starting_region
-    cur_fight = cur_region.path.start
+    cur_fight = {next: ["start"]}
     while (allylist.length) {
         await encounter()
     }
@@ -158,7 +158,27 @@ async function first_selection() {
     })
 }
 async function decide_path() {
-    return cur_region.path[cur_fight.next[0]]
+    return new Promise((resolve) => {
+        animationQueue.add(new animation_que_item(()=>{
+            return set_paths_over(false)
+        },pathsover))
+        while (paths_container.firstChild) {
+            paths_container.removeChild(paths_container.firstChild)
+        }
+        cur_fight.next.forEach(element => {
+          let btn =  document.createElement("button")
+          let pic = document.createElement("img")
+          pic.src = cur_region.path[element].logo
+          btn .appendChild(pic)
+          btn.addEventListener("click",()=> {
+             animationQueue.add(new animation_que_item(()=>{
+            return set_paths_over(true )
+        },pathsover))
+            resolve(cur_region.path[element])
+          })
+          paths_container.appendChild(btn)
+        });
+    })
 }
 async function encounter() {
     cur_fight = await decide_path()

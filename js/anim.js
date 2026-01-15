@@ -15,7 +15,7 @@ function open_close_controls(open = false) {
 async function count(objekt = turns ? turns : waves ? waves : null) {
     objekt.style.top = "5%"
     objekt.textContent = objekt === turns ? "turn: " + turn_count : "fight: " + fight_num
-    return waitForMotion(objekt, { transitionProperty: "top", timeout: 1000 })
+    waitForMotion(objekt, { transitionProperty: "top", timeout: 1000 })
         .then(() => {
             setTimeout(() => {
                 objekt.style.opacity = 0 + "%"
@@ -29,5 +29,14 @@ async function count(objekt = turns ? turns : waves ? waves : null) {
 
 
         })
+}
+async function set_paths_over(up = false) {
+    if (up){
+        pathsover.style.top = "-100vh"
+    }
+    else {
+        pathsover.style.top = 0
+    }
+    return waitForMotion(pathsover,{transitionProperty:"top",timeout:1000})
 }
 console.log("anim loaded")
