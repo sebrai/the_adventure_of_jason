@@ -7,16 +7,17 @@ let enemy1;
 let enemy2;
 let enemy3;
 let enemy4;
-
+const base_enemies = [enemy1, enemy2, enemy3, enemy4]
+let starting_region = prolog_R
 async function startGame() {
     main_player = await first_selection();
-    
+
     // continue game setup
-    cur_region = prolog_R
-    cur_fight = prolog_R
-     while (allylist.length) {
+    cur_region = starting_region
+    cur_fight = cur_region.path.start
+    while (allylist.length) {
         await encounter()
-     }
+    }
 }
 
 
@@ -53,21 +54,30 @@ function heal(target, hp_to_heal = 10) {
     }, target.body.hp_current))
 }
 function kill(target) {
-    target.dead = true // prevents it from attacking
+    if (target.dead) return
+    target.dead = true
+
     const list = target instanceof ally ? allylist : enemylist
     const bodies = target instanceof ally ? ally_area : enemy_area
-    // console.log(bodies)
-    list.splice(list.indexOf(target), 1)
-    for (let index = 0; index < bodies.children.length; index++) {
-        const element = bodies.children[index];
-        if (element == target.body.whole) {
-            animationQueue.add(new animation_que_item(() => {
-                bodies.removeChild(element)
-                return;
-            }, element))
+
+    const idx = list.indexOf(target)
+    if (idx !== -1) {
+        list.splice(idx, 1)
+    }
+
+    for (let i = 0; i < bodies.children.length; i++) {
+        const element = bodies.children[i]
+        if (element === target.body.whole) {
+            animationQueue.add(
+                new animation_que_item(() => {
+                    bodies.removeChild(element)
+                }, element)
+            )
+            break
         }
     }
 }
+
 // effects
 function apply_effect(target, effectobjekt = null) {
     target.status = { ...effectobjekt }
@@ -148,22 +158,22 @@ async function first_selection() {
     })
 }
 async function decide_path() {
-    return cur_fight.tree[0] // should return a chosen option
+    return cur_region.path[cur_fight.next[0]]
 }
- async function encounter() {
+async function encounter() {
     cur_fight = await decide_path()
-    switch (cur_fight.type.title) {
+    switch (cur_fight.type) {
         case "fight":
-            await fight()
+            await do_fight()
             break;
-    
+
         default:
             break;
     }
- }
-async function fight(battle = fight_num) {
+}
+async function do_fight(battle = fight_num) {
     // console.log("wave:",number)
-   cur_fight.spawner()
+    cur_fight.start()
     animationQueue.add(new animation_que_item(() => {
         return count(waves)
     }, waves))
@@ -183,22 +193,19 @@ async function do_turn() {
     let order = turn_order(true)
     for (let index = 0; index < order.length; index++) {
         const element = order[index];
-        if (!element.dead) {
+        if (!element || !element.dead) {
             if (element instanceof ally) {
                 await player_action(element)
             }
             else {
-                // enemy action logik
+                console.log("enemy turn")
             }
         }
     }
-    turn_end()
-}
-
-function turn_end() {
-    // logik
     turn_count++
 }
+
+
 
 function spawn_enemies(wave) {
     // console.log("triggerd")
@@ -226,7 +233,9 @@ function end_turn() {
     }
 }
 function turn_order(show = false) {
-    const all = [...allylist, ...enemylist].sort(function (a, b) { return b.hero.current.speed - a.hero.current.speed })
+    const all = [...allylist, ...enemylist]
+        .filter(unit => unit && !unit.dead)
+        .sort((a, b) => b.hero.current.speed - a.hero.current.speed)
     if (show) {
         for (let index = 0; index < all.length; index++) {
             const element = all[index];

@@ -3,57 +3,13 @@ const prolog_R = {
     name: "the feilds of Iolcus",
     prefix: "feild:",
     done: false,
-    end: async function () {
-        // await boss fight
-        // sett to next region
-        // play animation
-        // start next region
 
-    },
-    tree: [
-        {
-            type: new tree_item("fight"), // when choosing path display title and logo
-            spawner: function () { // run spawner then run wave to lock player into combart
-                enemy1 = new enemy(pirate)
-            },
-            tree: [
-                {
-                    type: new tree_item("fight"), // when choosing path display title and logo
-                    spawner: function () { // run spawner then run wave to lock player into combart
-                        // what to spawn
-                    },
-                    tree: [
-                        {
-                            type: new tree_item("event"), // when choosing path displat title and logo
-                            do: () => { }, // give the player, their boon power
-                            tree: [
-                                {
-                                    type: new tree_item("fight"), // when choosing path displat title and logo
-                                    spawner: function () { // run spawner then run wave to lock player into combart
-                                        // what to spawn
-                                    },
-                                    tree: [
-                                        {
-                                            type: new tree_item("shop"), // when choosing path displat title and logo
-                                            items:[], // put items in here
-                                            tree: [
-                                                {
-                                                    type: new tree_item("fight"), // when choosing path displat title and logo
-                                                    spawner: function () { // run spawner then run wave to lock player into combart
-                                                        prolog_R.end()
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+    path: {
+        "start": new fight(["A"], [city_guard ]),
+        "A": new fight(["B", "C"], [ city_guard, city_guard ]),
+        "B": new fight(["D"], [ city_guard, city_guard ]),
+        "C": new fight(["D","B"], [pirate]),
+    }
 }
 // const city_R = {
 //     key: "R_city",
