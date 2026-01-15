@@ -193,7 +193,8 @@ async function encounter() {
 }
 async function do_fight(battle = fight_num) {
     // console.log("wave:",number)
-    cur_fight.start()
+     const enemy_types = await cur_fight.start()
+     spawn_enemies(enemy_types)
     animationQueue.add(new animation_que_item(() => {
         return count(waves)
     }, waves))
@@ -227,9 +228,20 @@ async function do_turn() {
 
 
 
-function spawn_enemies(wave) {
-    // console.log("triggerd")
-    enemy1 = new enemy(pirate) // placeholder
+function spawn_enemies(list) {
+    for (let index = 0; index < list.length; index++) {
+        const item = list[index];
+
+        const slotIndex = base_enemies.findIndex(
+            element => !element || element.dead
+        );
+
+        if (slotIndex !== -1) {
+            base_enemies[slotIndex] = new enemy(item);
+        }
+    }
+
+    console.log("enemy list:", enemylist);
 }
 
 

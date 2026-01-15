@@ -9,6 +9,9 @@ const prolog_R = {
         "A": new fight(["B", "C"], [ city_guard, city_guard ]),
         "B": new fight(["D"], [ city_guard, city_guard ]),
         "C": new fight(["D","B"], [pirate]),
+        // "D":,
+        // "E":,
+
     }
 }
 // const city_R = {

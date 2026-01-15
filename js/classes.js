@@ -73,14 +73,9 @@ class fight {
         this.type = !bossfight ? "fight" : "bossfight"
         this.logo = "./assets/icons/" + (!bossfight ? "fight" : "boss_fight" )+ ".png"
         this.start = async () => {
-            if (startanim) {
-                await startanim()
-            }
-            for (let index = 0; index < enemies.length; index++) {
-                const element = enemies[index];
-                base_enemies[index] =new enemy(element)
-            }
-            console.log("spwned: ", enemies, "enemy list: ", enemylist)
+            if (startanim) await startanim()
+           return enemies
+           
         }
         this.end_animation = endanim
         this.next = next
@@ -96,7 +91,7 @@ class shop {
     }
 }
 
-class event {
+class story_event {
     constructor(next, afunc= async function () {}) {
         this.type = "event"
         this.logo = "./assets/icons/event.png"
