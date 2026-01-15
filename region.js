@@ -9,9 +9,12 @@ const prolog_R = {
         "A": new fight(["B", "C"], [ city_guard, city_guard ]),
         "B": new fight(["D"], [ city_guard, city_guard ]),
         "C": new fight(["D","B"], [pirate]),
-        // "D":,
-        // "E":,
-
+        "D": new story_event(["E"],async () => {
+            return
+        }),
+        "E": new fight(["F"],[pirate]),
+        "F": new shop(["end"],[]),
+        "end": new fight,
     }
 }
 // const city_R = {
