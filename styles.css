@@ -125,26 +125,47 @@ body {
 
 /* path decicion */
 
-.pathsover{
+.pathsover {
   position: fixed;
-  top: -100vh;
+  top: 0;
   width: 100vw;
   height: 100vh;
   z-index: 30;
   background-color: rebeccapurple;
   transition: top 1s ease;
+
 }
-.btn_bx{
+
+.btn_bx {
   display: flex;
   position: absolute;
   background-color: red;
   width: 90%;
   height: 60%;
-  left: 5% ;
+  left: 5%;
   top: 20%;
 
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.btn_bx button {
+  height: 80%;
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  cursor: pointer;
 
 }
+.btn_bx button:hover{
+  height:  84%;
+  transition: height 0.2s ease;
+}
+.btn_bx button img {
+  max-width: 70.7%;
+  max-height: 70.7%;
+  /* 1/root2 */
+}
+
 /* backpack */
 .items_over {
   display: none;
@@ -337,7 +358,7 @@ body {
   background-color: bisque;
   position: absolute;
   user-select: none;
-  transition: top 1s ease;
+  transition: top 1s ease, left 1s ease;
 }
 
 .char_indiv img {
