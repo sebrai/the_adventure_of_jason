@@ -131,7 +131,8 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 30;
-  background-color: rebeccapurple;
+  background-image:url(./assets/backgrounds/temp/map.jpg);
+  background-size: cover;
   transition: top 1s ease;
 
 }
@@ -139,7 +140,7 @@ body {
 .btn_bx {
   display: flex;
   position: absolute;
-  background-color: red;
+  /* background-color: red; */
   width: 90%;
   height: 60%;
   left: 5%;
@@ -154,11 +155,11 @@ body {
   border-radius: 100%;
   aspect-ratio: 1/1;
   cursor: pointer;
-
+   background: none;
 }
 
 .btn_bx button:hover {
-  height: 84%;
+  height: 75%;
   transition: height 0.2s ease;
 }
 
