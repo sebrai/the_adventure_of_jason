@@ -176,7 +176,7 @@ async function decide_path() {
                     return set_paths_over(true)
                 }, pathsover))
                 paths_container.innerHTML = ""
-                resolve(cur_region.path[element.to])
+                resolve([cur_region.path[element.to],element.to])
 
             })
            
@@ -187,12 +187,16 @@ async function decide_path() {
     })
 }
 async function encounter() {
-    cur_fight = await decide_path()
+    enc = await decide_path()
+    cur_fight = enc[0]
+    nodes_visited.push(cur_region.prefix + enc[1])
     switch (cur_fight.type) {
         case "fight":
             await do_fight()
             break;
-
+        case "event":
+            await cur_fight.start()
+            break
         default:
             break;
     }
