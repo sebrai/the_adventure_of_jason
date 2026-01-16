@@ -14,6 +14,9 @@ const turns = document.getElementById("turns")
 const waves = document.getElementById("waves")
 const pathsover = document.getElementById("pathsover")
 const paths_container = document.getElementById("paths_bx")
+const b_unlock = document.getElementById("boon_unlock")
+const b_unluck_img = document.getElementById("boon_unlock_img") 
+const b_unluck_continue = document.getElementById("b_unlock_continue") 
 // globals (important)
 let key_incrementor = 0
 let control_lock = false

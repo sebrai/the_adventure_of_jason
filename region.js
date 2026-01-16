@@ -10,7 +10,15 @@ const prolog_R = {
         "B": new fight(["D"], [ city_guard, city_guard ]),
         "C": new fight(["D","B"], [pirate]),
         "D": new story_event(["E"],async () => {
-            return
+            switch (main_player.hero.key) {
+                case "jason":
+                    // play animation based on charachter
+                    main_player.hero.boon.unlocked = true
+                    break;
+            
+                default:
+                    break;
+            }
         }),
         "E": new fight(["F"],[pirate]),
         "F": new shop(["end"],[]),

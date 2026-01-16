@@ -39,4 +39,21 @@ async function set_paths_over(up = false) {
     }
     return waitForMotion(pathsover,{transitionProperty:"top",timeout:1000})
 }
+async function unlock_boon(target) {
+    b_unluck_img.src = target.hero.boon.logo
+    b_unlock.style.top = 0
+    return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            b_unluck_continue.addEventListener("click",()=>{
+                b_unlock.style.top = "100vh"
+                resolve("")
+            })
+            b_unluck_continue.style.opacity = "100%"
+
+        },2000)
+    }).then(b_unluck_continue.removeEventListener("click",()=>{
+                b_unlock.style.top = "100vh"
+                resolve("")
+            }))
+}
 console.log("anim loaded")
