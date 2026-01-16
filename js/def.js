@@ -26,6 +26,7 @@ let cur_fight;
 let fight_num = 1
 const allylist = []
 const enemylist = []
+const nodes_visited = []
 // global functions
 function getkey() {
     key_incrementor++

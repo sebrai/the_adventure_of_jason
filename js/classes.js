@@ -69,7 +69,7 @@ class ally {
     }
 }
 class fight {
-    constructor(next, enemies,  bossfight= false, startanim, endanim) {
+    constructor(next, enemies, bossfight= false, startanim, endanim) {
         this.type = !bossfight ? "fight" : "bossfight"
         this.logo = "./assets/icons/" + (!bossfight ? "fight" : "boss_fight" )+ ".png"
         this.start = async () => {
