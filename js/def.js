@@ -24,6 +24,7 @@ let turn_count = 1
 let cur_region;
 let cur_fight;
 let fight_num = 1
+let gold = 50
 const allylist = []
 const enemylist = []
 const nodes_visited = []

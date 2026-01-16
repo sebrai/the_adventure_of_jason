@@ -69,34 +69,49 @@ class ally {
     }
 }
 class fight {
-    constructor(next, enemies, bossfight= false, startanim, endanim) {
+    constructor(next, enemies, n_condition = null, bossfight = false, startanim, endanim) {
         this.type = !bossfight ? "fight" : "bossfight"
-        this.logo = "./assets/icons/" + (!bossfight ? "fight" : "boss_fight" )+ ".png"
+        this.logo = "./assets/icons/" + (!bossfight ? "fight" : "boss_fight") + ".png"
         this.start = async () => {
             if (startanim) await startanim()
-           return enemies
-           
+            return enemies
+
         }
         this.end_animation = endanim
-        this.next = next
+        this.next = []
+        for (let index = 0; index < next.length; index++) {
+            const element = next[index];
+            const cond = n_condition?.[index]
+            this.next.push({ to: element, condition: cond ? cond : () => true })
+        }
     }
 }
 
 class shop {
-    constructor(next, items) {
+    constructor(next, items, n_condition) {
         this.type = "shop"
         this.logo = "./assets/icons/shop.png"
         this.items = items
-        this.next = next
+        this.next = []
+        for (let index = 0; index < next.length; index++) {
+            const element = next[index];
+            const cond = n_condition?.[index]
+            this.next.push({ to: element, condition: cond ? cond : () => true })
+        }
     }
 }
 
 class story_event {
-    constructor(next, afunc= async function () {}) {
+    constructor(next, afunc = async function () { }, n_condition = null) {
         this.type = "event"
         this.logo = "./assets/icons/event.png"
-        this. start = afunc 
-        this.next = next
+        this.start = afunc
+        this.next = []
+        for (let index = 0; index < next.length; index++) {
+            const element = next[index];
+            const cond = n_condition?.[index]
+            this.next.push({ to: element, condition: cond ? cond : () => true })
+        }
     }
 }
 

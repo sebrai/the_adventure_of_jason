@@ -14,7 +14,7 @@ async function startGame() {
 
     // continue game setup
     cur_region = starting_region
-    cur_fight = {next: ["start"]}
+    cur_fight = { next: [{to: "start",condition:()=> true}] }
     while (allylist.length) {
         await encounter()
     }
@@ -159,24 +159,30 @@ async function first_selection() {
 }
 async function decide_path() {
     return new Promise((resolve) => {
-        animationQueue.add(new animation_que_item(()=>{
+        animationQueue.add(new animation_que_item(() => {
             return set_paths_over(false)
-        },pathsover))
-        while (paths_container.firstChild) {
-            paths_container.removeChild(paths_container.firstChild)
-        }
+        }, pathsover))
+        paths_container.innerHTML = ""
+        // console.log(cur_fight)
         cur_fight.next.forEach(element => {
-          let btn =  document.createElement("button")
-          let pic = document.createElement("img")
-          pic.src = cur_region.path[element].logo
-          btn .appendChild(pic)
-          btn.addEventListener("click",()=> {
-             animationQueue.add(new animation_que_item(()=>{
-            return set_paths_over(true )
-        },pathsover))
-            resolve(cur_region.path[element])
-          })
-          paths_container.appendChild(btn)
+            // console.log(element)
+             if (!element.condition()) return
+            let btn = document.createElement("button")
+            let pic = document.createElement("img")
+            pic.src = cur_region.path[element.to].logo
+            btn.appendChild(pic)
+            btn.addEventListener("click", () => {
+                animationQueue.add(new animation_que_item(() => {
+                    return set_paths_over(true)
+                }, pathsover))
+                paths_container.innerHTML = ""
+                resolve(cur_region.path[element.to])
+
+            })
+           
+                 paths_container.appendChild(btn)
+            
+           
         });
     })
 }
@@ -193,8 +199,8 @@ async function encounter() {
 }
 async function do_fight(battle = fight_num) {
     // console.log("wave:",number)
-     const enemy_types = await cur_fight.start()
-     spawn_enemies(enemy_types)
+    const enemy_types = await cur_fight.start()
+    spawn_enemies(enemy_types)
     animationQueue.add(new animation_que_item(() => {
         return count(waves)
     }, waves))
