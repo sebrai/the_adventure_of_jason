@@ -108,7 +108,7 @@ let jason = {
         }
     ],
     boon: {
-        logo: "",
+        logo: "./assets/icons/bp/jason_hera.png",
         charge: 0,
         req: 150 ,
         unlocked: false,
