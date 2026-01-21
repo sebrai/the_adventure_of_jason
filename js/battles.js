@@ -14,7 +14,7 @@ async function startGame() {
 
     // continue game setup
     cur_region = starting_region
-    cur_fight = { next: [{to: "start",condition:()=> true}] }
+    cur_fight = { next: [{ to: "start", condition: () => true }] }
     while (allylist.length) {
         await encounter()
     }
@@ -58,24 +58,16 @@ function kill(target) {
     target.dead = true
 
     const list = target instanceof ally ? allylist : enemylist
-    const bodies = target instanceof ally ? ally_area : enemy_area
-
+    
     const idx = list.indexOf(target)
     if (idx !== -1) {
         list.splice(idx, 1)
     }
+    animationQueue.add(new animation_que_item(() => {
+        return anim_defeat(target)
 
-    for (let i = 0; i < bodies.children.length; i++) {
-        const element = bodies.children[i]
-        if (element === target.body.whole) {
-            animationQueue.add(
-                new animation_que_item(() => {
-                    bodies.removeChild(element)
-                }, element)
-            )
-            break
-        }
-    }
+
+    }, target.body.whole))
 }
 
 // effects
@@ -166,7 +158,7 @@ async function decide_path() {
         // console.log(cur_fight)
         cur_fight.next.forEach(element => {
             // console.log(element)
-             if (!element.condition()) return
+            if (!element.condition()) return
             let btn = document.createElement("button")
             let pic = document.createElement("img")
             pic.src = cur_region.path[element.to].logo
@@ -176,13 +168,13 @@ async function decide_path() {
                     return set_paths_over(true)
                 }, pathsover))
                 paths_container.innerHTML = ""
-                resolve([cur_region.path[element.to],element.to])
+                resolve([cur_region.path[element.to], element.to])
 
             })
-           
-                 paths_container.appendChild(btn)
-            
-           
+
+            paths_container.appendChild(btn)
+
+
         });
     })
 }
