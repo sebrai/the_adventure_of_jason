@@ -29,17 +29,17 @@ async function startGame() {
 // general
 function take_dmg(target, dmg) {
     target.hero.current.hp -= dmg
-    if (target.hero.current.hp <= 0) {
-        target.hero.current.hp = 0
-        kill(target)
-    }
-
     // passive abillity logik
-
+    if (target.hero.current.hp < 0) {
+        target.hero.current.hp = 0
+        
+    }
     animationQueue.add(new animation_que_item(() => {
         return sethp(target, target.hero.current.hp)
 
     }, target.body.hp_current))
+    
+    if (target.hero.current.hp == 0) kill(target)
 }
 function heal(target, hp_to_heal = 10) {
     target.hero.current.hp += hp_to_heal
@@ -58,7 +58,7 @@ function kill(target) {
     target.dead = true
 
     const list = target instanceof ally ? allylist : enemylist
-    
+
     const idx = list.indexOf(target)
     if (idx !== -1) {
         list.splice(idx, 1)
