@@ -5,6 +5,7 @@ body {
   margin-top: -22px;
   background-image: url(./assets/backgrounds/temp/feild.jpg);
   background-size: cover;
+  background-position: center top ;
 }
 
 .tittle {

@@ -21,7 +21,10 @@ const prolog_R = {
                     break;
             }
         }),
-        "E": new fight(["F","S"],[pirate],[()=>true,() => nodes_visited.includes("feild:B")|| nodes_visited.includes("feild:C")]),
+        "E": new fight(["F","S"],[pirate],[()=>true,() => nodes_visited.includes("feild:B")|| nodes_visited.includes("feild:C")],false,()=>{
+            document.body.style.backgroundImage = "url(./assets/backgrounds/temp/distance.jpg)"
+            document.body.style.backgroundSize = "auto 100vh"
+        }),
         "F": new shop(["end"],[]),
         "S": new story_event(["F"],async () => {
             gold += 40
