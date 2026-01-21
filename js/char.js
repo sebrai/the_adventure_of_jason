@@ -265,5 +265,140 @@ let medea = {
     },
 
 }
-const charlist = [jason, medea]
+
+let test_charachter = {
+    key: "jason",
+    name: "test",
+    starter: true,
+    maxhp: 100,
+    base_mana: 20,
+    mana_gain: 5,
+    crit_chance: 15,
+    crit_mult: 1.75,
+    char_speed: 50,
+    speed_base: null,
+    current: { // describes anything that changes
+        hp: 100,
+        mana: 20,
+        mana_gain: 5,
+        crit_chance: 15,
+        speed: null,
+        dmg_buffs: [],
+        sheild_buffs: [],
+        items: {
+            temps: [],
+            perms: [],
+            equipables: {
+                armor: {
+                    helmet: null,
+                    chestplate: null,
+                    leggings: null,
+                    boots: null,
+                    gloves: null
+                },
+                mainhand: null,
+                sidearm: null,
+                sheild: null
+            },
+        },
+        aspect: 0
+    },
+    sprites: ["/temp/funny_test.jpg"],// add sprites when created
+    attacks: [
+        {
+            dmg: 100,
+            cost: 0,
+            index: 0,
+            name: "wild baby attack",
+            range: "melee",
+            type: "slash",
+            target: "enemy",
+            status_eff: {
+                apply: false,
+                statusobjekt: {
+                    power: 0,
+                    duration: 0,
+                    key: "none",
+                }
+            },
+            func: function (target, self) {
+                take_dmg(target, getdmg(this.dmg, self, this))
+                if (this.status_eff.apply) {
+                    apply_effect(target, this.status_eff.statusobjekt)
+                }
+            }
+        }, {
+            dmg: 45,
+            cost: 3,
+            index: 1,
+            name: "spitt",
+            cost: 5,
+            range: "medium",
+            type: "proj",
+            target: "enemy",
+            status_eff: {
+                apply: false,
+                statusobjekt: {
+                    power: 10,
+                    duration: 1,
+                    key: "bleed"
+                }
+            },
+            func: function (target, self) {
+                take_dmg(target, getdmg(this.dmg, self, this))
+                if (this.status_eff.apply) {
+                    apply_effect(target, this.status_eff.statusobjekt)
+                }
+            }
+        }, {
+            dmg: 30,
+            cost: 10,
+            index: 2,
+            name: "crying baby",
+            range: "self",
+            type: "magick",
+            target: "self",
+            status_eff: {
+                apply: false,
+                statusobjekt: {
+                    power: 35,
+                    duration: 4,
+                    key: "locked in",
+                }
+            },
+            func: function (target, self = undefined) {
+
+                heal(target,(this.dmg*target.hero.maxhp)/100)
+                if (this.status_eff.apply) {
+                    apply_effect(self ? self : target, this.status_eff.statusobjekt)
+                }
+            }
+        }
+    ],
+    boon: {
+        logo: "./assets/icons/bp/jason_hera.png",
+        charge: 0,
+        req: 150 ,
+        unlocked: false,
+        from: "Hera",
+        func: function (target = null, user = null) {
+            allylist.forEach(element => {
+                element.hero.current.crit_chance += 15
+            });
+        },
+    },
+
+    ability: function (self, context = {}) {
+        if (context.end_wave) {
+            self.hero.crit_chance += 2
+            self.hero.current.crit_chance += 2
+        }
+        // else if (context.on_status || context.get_hit){
+        //     self.hero.crit_chance += 1
+        //     self.hero.current.crit_chance += 1
+        // }
+    },
+
+}
+const charlist = [jason, medea,test_charachter]
 console.log("char loaded")
