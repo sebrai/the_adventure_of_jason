@@ -30,7 +30,7 @@ let pirate = {
         },
         aspect: 0
     },
-    sprites: ["/temp/image.png"],// add sprites when created
+    sprites: ["/temp/pirate.svg"],// add sprites when created
     attacks: [
         {
             dmg: 30,

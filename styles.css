@@ -3,6 +3,8 @@ body {
   /* padding: 0; */
   margin: 0;
   margin-top: -22px;
+  background-image: url(./assets/backgrounds/temp/feild.jpg);
+  background-size: cover;
 }
 
 .tittle {
@@ -361,7 +363,7 @@ body {
   background-color: bisque;
   position: absolute;
   user-select: none;
-  transition: top 1s ease, left 1s ease;
+  transition: top 1s ease, left 1s ease, opacity 0.5s ease;
 }
 
 .char_indiv img {
