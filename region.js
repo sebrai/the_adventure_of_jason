@@ -28,6 +28,7 @@ const prolog_R = {
         "F": new shop(["end"],[]),
         "S": new story_event(["F"],async () => {
             gold += 40
+            document.body.style.backgroundImage = "url(./assets/backgrounds/temp/secret_cave.jpg)"
         })
         // "end": new fight,
     }

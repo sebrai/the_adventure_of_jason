@@ -102,7 +102,7 @@ class shop {
 }
 
 class story_event {
-    constructor(next, afunc = async function () { }, n_condition = null) {
+    constructor(next, afunc = async function () { }, n_condition = null,start_animation = null) {
         this.type = "event"
         this.logo = "./assets/icons/event.png"
         this.start = afunc
