@@ -8,7 +8,7 @@ const prolog_R = {
         "start": new fight(["A"], [city_guard ]),
         "A": new fight(["B", "C"], [ city_guard, city_guard ]),
         "B": new fight(["D"], [ city_guard, city_guard ]),
-        "C": new fight(["D","B"], [pirate]),
+        "C": new fight(["B","D"], [pirate]),
         "D": new story_event(["E"],async () => {
             switch (main_player.hero.key) {
                 case "jason":
@@ -30,8 +30,10 @@ const prolog_R = {
         "S": new story_event(["F"],async () => {
             gold += 40
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/secret_cave.jpg)"
+        }),
+        "end": new fight(["start"],[head_city_guard,city_guard],null,true,undefined,async ()=>{
+            cur_region = prolog_R // change to city
         })
-        // "end": new fight,
     }
 }
 // const city_R = {

@@ -185,6 +185,7 @@ async function encounter() {
     switch (cur_fight.type) {
         case "fight":
             await do_fight()
+            if (cur_fight.end_animation) await cur_fight.end_animation()
             break;
         case "event":
             await cur_fight.start()
