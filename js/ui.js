@@ -15,7 +15,7 @@ const animationQueue = {
         while (this.items.length > 0) {
             const item = this.items.shift()
             await item.do()
-            console.log("animation on item:", item.target)
+            // console.log("animation on item:", item.target)
         }
 
         this.running = false;
