@@ -11,6 +11,7 @@ class html_body {
 
         this.sprite = document.createElement("img")
         this.sprite.src = "../assets/char" + base.hero.sprites[base.hero.current.aspect]
+        this.sprite.draggable = false
         this.whole.appendChild(this.sprite)
         this.whole.className = "char_indiv"
         if (ally) {

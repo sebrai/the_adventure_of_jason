@@ -1,8 +1,9 @@
 function sethp(target, amount = target.hero.current.hp) {
     // target.body.hp_current.textContent = amount
-    numbers_roll(target.body.hp_current,amount,1000/(Math.abs(Number(target.body.hp_current.textContent)-amount)))
+    let t_time = 1000
+    numbers_roll(target.body.hp_current,amount,t_time/(Math.abs(Number(target.body.hp_current.textContent)-amount)))
     target.body.hp_current.style.width = (2 * amount) + "px"
-    return waitForMotion(target.body.hp_current, { transitionProperty: "width", timeout: 1000 })
+    return waitForMotion(target.body.hp_current, { transitionProperty: "width", timeout: t_time })
 }
 async function anim_defeat(target) {
     target.body.whole.style.opacity = "0%"
@@ -31,7 +32,7 @@ function open_close_controls(open = false) {
     else {
         controls_area.style.top = "100vh"
     }
-    return waitForMotion(controls_area, { transitionProperty: "top", timeout: 500 })
+    // return waitForMotion(controls_area, { transitionProperty: "top", timeout: 500 })
 }
 async function count(objekt = turns ? turns : waves ? waves : null) {
     objekt.style.top = "5%"
