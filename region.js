@@ -31,7 +31,9 @@ const prolog_R = {
             gold += 40
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/secret_cave.jpg)"
         }),
-        "end": new fight(["start"],[head_city_guard,city_guard],null,true,undefined,async ()=>{
+        "end": new fight(["start"],[head_city_guard,city_guard],null,true,()=>{
+            document.body.style.backgroundImage = "url(./assets/backgrounds/temp/city_walls_infront.jpg)"
+        },async ()=>{
             cur_region = prolog_R // change to city
         })
     }

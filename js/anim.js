@@ -1,5 +1,6 @@
 function sethp(target, amount = target.hero.current.hp) {
-    target.body.hp_current.textContent = amount
+    // target.body.hp_current.textContent = amount
+    numbers_roll(target.body.hp_current,amount,1000/(Math.abs(Number(target.body.hp_current.textContent)-amount)))
     target.body.hp_current.style.width = (2 * amount) + "px"
     return waitForMotion(target.body.hp_current, { transitionProperty: "width", timeout: 1000 })
 }
@@ -49,6 +50,26 @@ async function count(objekt = turns ? turns : waves ? waves : null) {
 
 
         })
+}
+async function numbers_roll(changeing_el,end,speed =50) {
+    // console.log(Number(changeing_el.textContent),end)
+    if (Number(changeing_el.textContent)== end) return
+    else if (Number(changeing_el.textContent)> end) {
+        while (Number(changeing_el.textContent) > end) {
+            changeing_el.textContent = Math.floor( Number(changeing_el.textContent) - 1)
+            await wait(speed)
+            // console.log(changeing_el.textContent)
+        }
+        
+    }
+    else{
+        while (Number(changeing_el.textContent) < end) {
+            changeing_el.textContent = Math.floor( Number(changeing_el.textContent) - 1)
+            await wait(speed)
+        }
+    }
+
+    
 }
 async function set_paths_over(up = false) {
     if (up) {
