@@ -32,13 +32,13 @@ function take_dmg(target, dmg) {
     // passive abillity logik
     if (target.hero.current.hp < 0) {
         target.hero.current.hp = 0
-        
+
     }
     animationQueue.add(new animation_que_item(() => {
         return sethp(target, target.hero.current.hp)
 
     }, target.body.hp_current))
-    
+
     if (target.hero.current.hp == 0) kill(target)
 }
 function heal(target, hp_to_heal = 10) {
@@ -407,5 +407,39 @@ async function player_action(user = main_player, fails = 0) {
     }
 
 
+}
+function atk_influence(e, target) {
+    let influence = []
+    for (let index = 0; index < e.hero.attacks.length; index++) {
+        const atk = e.hero.attacks[index];
+        let inf = rng(rng(70, 40), rng(5, rng(-5, -15)))
+        inf += atk.dmg
+        if (atk.status_eff.apply) {
+            inf += atk.status_eff.status_objekt.power * atk.status_eff.status_objekt.duration
+        }
+        inf *= 1 + (atk.dmg / 100)
+        if (atk.dmg > target.hero.current.hp) {
+            inf *= 2
+        }
+        if (atk.target === "self") {
+            inf += 5
+            if (e.hero.current.hp < e.hero.maxhp * 0.2) {
+                inf *= atk.dmg / 10
+            }
+        }
+        inf -= atk.index * 20
+        inf = Math.round(inf)
+        influence.push(inf)
+    }
+    console.log(influence)
+    return influence
+}
+function e_decide_atk(e, target) {
+    let influence = atk_influence(e, target)
+    let num = rng(Math.max(...influence) + Math.min(...influence) - 1)
+    console.log(num)
+    let atk_index = Math.min(...influence) > num ? influence.indexOf(Math.min(...influence)) : influence.indexOf(Math.max(...influence))
+    let atk = e.hero.attacks[atk_index]
+    return atk
 }
 console.log("battles loaded")
