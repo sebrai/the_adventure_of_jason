@@ -436,9 +436,21 @@ function atk_influence(e, target) {
 }
 function e_decide_atk(e, target) {
     let influence = atk_influence(e, target)
-    let num = rng(Math.max(...influence) + Math.min(...influence) - 1)
+    let total_wight = 0
+    for ( const item of influence){
+        // console.log(item)
+        total_wight += item
+    }
+    let num = rng(total_wight)
     console.log(num)
-    let atk_index = Math.min(...influence) > num ? influence.indexOf(Math.min(...influence)) : influence.indexOf(Math.max(...influence))
+    let atk_index = 0
+    for (const item of influence){
+        atk_index = influence.indexOf(item)
+        if (num < item) {
+            break
+        }
+        num -= item
+    }
     let atk = e.hero.attacks[atk_index]
     return atk
 }
