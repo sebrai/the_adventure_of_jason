@@ -41,7 +41,7 @@ class enemy {
             key: null
         }
         this.dead = false
-        enemylist.push(this)
+        G.enemylist.push(this)
     }
 }
 class animation_que_item {
@@ -66,7 +66,7 @@ class ally {
             key: null
         }
         this.dead = false
-        allylist.push(this)
+        G.allylist.push(this)
     }
 }
 class fight {

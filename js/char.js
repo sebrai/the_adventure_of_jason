@@ -114,7 +114,7 @@ let jason = {
         unlocked: false,
         from: "Hera",
         func: function (target = null, user = null) {
-            allylist.forEach(element => {
+            G.allylist.forEach(element => {
                 element.hero.current.crit_chance += 15
             });
         },
@@ -382,7 +382,7 @@ let test_charachter = {
         unlocked: false,
         from: "Hera",
         func: function (target = null, user = null) {
-            allylist.forEach(element => {
+            G.allylist.forEach(element => {
                 element.hero.current.crit_chance += 15
             });
         },

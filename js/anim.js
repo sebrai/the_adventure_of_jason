@@ -36,7 +36,7 @@ function open_close_controls(open = false) {
 }
 async function count(objekt = turns ? turns : waves ? waves : null) {
     objekt.style.top = "5%"
-    objekt.textContent = objekt === turns ? "turn: " + turn_count : "fight: " + fight_num
+    objekt.textContent = objekt === turns ? "turn: " + G.turn_count : "fight: " + G.fight_count
     waitForMotion(objekt, { transitionProperty: "top", timeout: 1000 })
         .then(() => {
             setTimeout(() => {

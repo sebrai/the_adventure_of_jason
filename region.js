@@ -21,20 +21,20 @@ const prolog_R = {
                     break;
             }
         }),
-        "E": new fight(["F","S"],[pirate],[()=>true,() => nodes_visited.includes("feild:B") &&  nodes_visited.includes("feild:C")],false,()=>{
+        "E": new fight(["F","S"],[pirate],[()=>true,() => G.nodes_visited.includes("feild:B") &&  G.nodes_visited.includes("feild:C")],false,()=>{
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/distance.jpg)"
             document.body.style.backgroundSize = "auto 100vh"
-            // console.log(nodes_visited)
+            // console.log(G.nodes_visited)
         }),
         "F": new shop(["end"],[]),
         "S": new story_event(["F"],async () => {
-            gold += 40
+            G.gold += 40
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/secret_cave.jpg)"
         }),
         "end": new fight(["start"],[head_city_guard,city_guard],null,true,()=>{
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/city_walls_infront.jpg)"
         },async ()=>{
-            cur_region = prolog_R // change to city
+            G.region = prolog_R //  should change to city
         })
     }
 }

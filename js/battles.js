@@ -8,14 +8,19 @@ let enemy2;
 let enemy3;
 let enemy4;
 const base_enemies = [enemy1, enemy2, enemy3, enemy4]
-let starting_region = prolog_R
+
+let start = {
+    place_R: prolog_R,
+    fight_start: { next: [{ to: "start", condition: () => true }] },
+}
 async function startGame() {
     main_player = await first_selection();
 
-    // continue game setup
-    cur_region = starting_region
-    cur_fight = { next: [{ to: "start", condition: () => true }] }
-    while (allylist.length) {
+    // continue G setup
+    G.gold = starting_gold
+    G.region = start.place_R
+    G.fight = start.fight_start
+    while (G.allylist.length) {
         await encounter()
     }
 }
@@ -57,7 +62,7 @@ function kill(target) {
     if (target.dead) return
     target.dead = true
 
-    const list = target instanceof ally ? allylist : enemylist
+    const list = target instanceof ally ? G.allylist : G.enemylist
 
     const idx = list.indexOf(target)
     if (idx !== -1) {
@@ -117,7 +122,7 @@ function do_status(target) {
     }
 }
 
-// game flow
+// G flow
 async function first_selection() {
     return new Promise(resolve => {
         for (let index = 0; index < charlist.length; index++) {
@@ -155,20 +160,20 @@ async function decide_path() {
             return set_paths_over(false)
         }, pathsover))
         paths_container.innerHTML = ""
-        // console.log(cur_fight)
-        cur_fight.next.forEach(element => {
+        // console.log(G.fight)
+        G.fight.next.forEach(element => {
             // console.log(element)
             if (!element.condition()) return
             let btn = document.createElement("button")
             let pic = document.createElement("img")
-            pic.src = cur_region.path[element.to].logo
+            pic.src = G.region.path[element.to].logo
             btn.appendChild(pic)
             btn.addEventListener("click", () => {
                 animationQueue.add(new animation_que_item(() => {
                     return set_paths_over(true)
                 }, pathsover))
                 paths_container.innerHTML = ""
-                resolve([cur_region.path[element.to], element.to])
+                resolve([G.region.path[element.to], element.to])
 
             })
 
@@ -180,35 +185,35 @@ async function decide_path() {
 }
 async function encounter() {
     enc = await decide_path()
-    cur_fight = enc[0]
-    nodes_visited.push(cur_region.prefix + enc[1])
-    switch (cur_fight.type) {
+    G.fight = enc[0]
+    G.nodes_visited.push(G.region.prefix + enc[1])
+    switch (G.fight.type) {
         case "fight":
             await do_fight()
-            if (cur_fight.end_animation) await cur_fight.end_animation()
+            if (G.fight.end_animation) await G.fight.end_animation()
             break;
         case "event":
-            await cur_fight.start()
+            await G.fight.start()
             break
         default:
             break;
     }
 }
-async function do_fight(battle = fight_num) {
+async function do_fight(battle = G.fight_count) {
     // console.log("wave:",number)
-    const enemy_types = await cur_fight.start()
+    const enemy_types = await G.fight.start()
     spawn_enemies(enemy_types)
     animationQueue.add(new animation_que_item(() => {
         return count(waves)
     }, waves))
-    while (enemylist.length) { // while wave not deafeated
+    while (G.enemylist.length) { // while wave not deafeated
         await do_turn()
 
     }
-    allylist.forEach(element => {
+    G.allylist.forEach(element => {
         wave_reset(element)
     })
-    fight_num++
+    G.fight_count++
 }
 async function do_turn() {
     animationQueue.add(new animation_que_item(() => {
@@ -226,7 +231,7 @@ async function do_turn() {
             }
         }
     }
-    turn_count++
+    G.turn_count++
 }
 
 
@@ -244,7 +249,7 @@ function spawn_enemies(list) {
         }
     }
 
-    console.log("enemy list:", enemylist);
+    console.log("enemy list:", G.enemylist);
 }
 
 
@@ -254,11 +259,11 @@ function wave_reset(char) {
     char.hero.current.hp = char.hero.maxhp
     char.hero.current.speed = char.hero.speed_base
     apply_effect(char) // having no second parameter for apply sets the status to null
-    turn_count = 1
+    G.turn_count = 1
 }
 function end_turn() {
-    for (let index = 0; index < allylist.length; index++) {
-        const item = allylist[index];
+    for (let index = 0; index < G.allylist.length; index++) {
+        const item = G.allylist[index];
         item.hero.current.mana += item.hero.current.mana_gain
         item.hero.current.crit_chance = item.hero.crit_chance
         item.hero.current.speed = item.hero.speed_base
@@ -268,7 +273,7 @@ function end_turn() {
     }
 }
 function turn_order(show = false) {
-    const all = [...allylist, ...enemylist]
+    const all = [...G.allylist, ...G.enemylist]
         .filter(unit => unit && !unit.dead)
         .sort((a, b) => b.hero.current.speed - a.hero.current.speed)
     if (show) {
@@ -327,7 +332,7 @@ async function get_target(string, user = main_player) { // string is the attacks
             }
             break;
         case "enemy":
-            if (!enemylist.length) {
+            if (!G.enemylist.length) {
                 console.error("no enemy to target")
                 return {
                     fail: true,
@@ -335,12 +340,12 @@ async function get_target(string, user = main_player) { // string is the attacks
                 }
             }
             return new Promise(resolve => {
-                for (let index = 0; index < enemylist.length; index++) {
-                    const enemyitem = enemylist[index];
+                for (let index = 0; index < G.enemylist.length; index++) {
+                    const enemyitem = G.enemylist[index];
                     enemyitem.body.whole.style.backgroundColor = "red" // replace with a better indicator latter
                     enemyitem.body.sprite.addEventListener("click", () => {
-                        for (let jindex = 0; jindex < enemylist.length; jindex++) {
-                            const element = enemylist[jindex];
+                        for (let jindex = 0; jindex < G.enemylist.length; jindex++) {
+                            const element = G.enemylist[jindex];
                             element.body.whole.style.backgroundColor = "beige"
                         }
                         resolve({
@@ -352,7 +357,7 @@ async function get_target(string, user = main_player) { // string is the attacks
             })
             break
         case "ally":
-            if (allylist.length <= 1) { // function should be turned into a variable
+            if (G.allylist.length <= 1) { // function should be turned into a variable
                 console.error("no allies attack failed")
                 return {
                     fail: true,
@@ -360,13 +365,13 @@ async function get_target(string, user = main_player) { // string is the attacks
                 }
             } // after return ask if (target.fail)
             return new Promise(resolve => {
-                for (let index = 0; index < allylist.length; index++) {
-                    const allyitem = allylist[index];
+                for (let index = 0; index < G.allylist.length; index++) {
+                    const allyitem = G.allylist[index];
                     if (allyitem != user) {
                         allyitem.body.whole.style.backgroundColor = "green" // replace with a better indicator latter
                         allyitem.body.sprite.addEventListener("click", () => {
-                            for (let jindex = 0; jindex < allylist.length; jindex++) {
-                                const element = allylist[jindex];
+                            for (let jindex = 0; jindex < G.allylist.length; jindex++) {
+                                const element = G.allylist[jindex];
                                 element.body.whole.style.backgroundColor = "beige"
                             }
                             resolve({

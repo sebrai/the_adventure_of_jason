@@ -19,15 +19,17 @@ const b_unluck_img = document.getElementById("boon_unlock_img")
 const b_unluck_continue = document.getElementById("b_unlock_continue") 
 // globals (important)
 let key_incrementor = 0
-let control_lock = false
-let turn_count = 1
-let cur_region;
-let cur_fight;
-let fight_num = 1
-let gold = 50
-const allylist = []
-const enemylist = []
-const nodes_visited = []
+let starting_gold = 30
+const G = {
+    region: undefined,
+    fight:undefined,
+    nodes_visited:[],
+    gold:0,
+    turn_count:0,
+    allylist:[],
+    enemylist:[],
+}
+
 // global functions
 function getkey() {
     key_incrementor++
