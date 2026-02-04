@@ -143,7 +143,7 @@ background-size: cover;
   max-height: 10%;
 }
 .c_cont img{
-  height: 40px;
+  height: 50px;
   aspect-ratio: 1/1;
 }
 .shop_items{
@@ -156,12 +156,15 @@ display: flex;
 flex-flow: row wrap;
 justify-content: space-around;
 align-items: center;
-background-color: blue;
+/* background-color: blue; */
 }
 .shop_items div{
-background-color: brown;
+/* background-color: brown; */
 width: 30%;
-aspect-ratio: 6/5;
+aspect-ratio: 6/4;
+}
+.shop_items div img{
+  width:100% ;
 }
 #shop_exit{
 background-color: red;

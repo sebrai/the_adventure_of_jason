@@ -11,7 +11,7 @@ const base_enemies = [enemy1, enemy2, enemy3, enemy4]
 
 let start = {
     place_R: prolog_R,
-    fight_start: { next: [{ to: "F", condition: () => true }] },
+    fight_start: { next: [{ to: "start", condition: () => true }] },
 }
 async function startGame() {
     main_player = await first_selection();
