@@ -125,6 +125,52 @@ body {
 }
 
 /* shop */
+.shop{
+position: fixed;
+z-index: 33;
+top: 100vh;
+left: 0;
+width: 100vw;
+height: 100vh;
+transition: top 1s ease;
+background-image: url(assets/backgrounds/temp/shop.jpg);
+background-size: cover;
+}
+.c_cont{
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  max-height: 10%;
+}
+.c_cont img{
+  height: 40px;
+  aspect-ratio: 1/1;
+}
+.shop_items{
+  position: absolute;
+  top: 14%;
+  right: 2%;
+  width: 96%;
+  height:80% ;
+display: flex;
+flex-flow: row wrap;
+justify-content: space-around;
+align-items: center;
+background-color: blue;
+}
+.shop_items div{
+background-color: brown;
+width: 30%;
+aspect-ratio: 6/5;
+}
+#shop_exit{
+background-color: red;
+color: aqua;
+padding: 10px;
+position: absolute;
+bottom: 2%;
+right: 2%;
+}
 
 /* path decicion */
 
