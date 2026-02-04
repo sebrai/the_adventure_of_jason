@@ -26,7 +26,7 @@ const prolog_R = {
             document.body.style.backgroundSize = "auto 100vh"
             // console.log(G.nodes_visited)
         }),
-        "F": new shop(["end"],[]),
+        "F": new shop(["end"],[pocket_fireball,healing_potion,speed_potion]),
         "S": new story_event(["F"],async () => {
             G.gold += 40
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/secret_cave.jpg)"

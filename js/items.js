@@ -9,6 +9,7 @@
     desc: "",
     holder: null,
     power: 40,
+    cost:20,
    sprite:"../assets/icons/h_potion.png",
     do: async function (target = this.holder) {
        heal(target,this.power) 
@@ -25,6 +26,7 @@
     desc: "",
     holder: null,
     power: 40,
+    cost:15,
     sprite:"../assets/icons/s_potion.png",
     do: async function (target = this.holder) {
       apply_effect(target,{
@@ -45,6 +47,7 @@
     desc: "",
     holder: null,
     power: 60,
+    cost:60,
     sprite:"../assets/icons/pfb.png",
     do: async function (target = this.holder) {
       let t = get_target("enemy",target)

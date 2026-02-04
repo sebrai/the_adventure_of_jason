@@ -11,7 +11,7 @@ const base_enemies = [enemy1, enemy2, enemy3, enemy4]
 
 let start = {
     place_R: prolog_R,
-    fight_start: { next: [{ to: "start", condition: () => true }] },
+    fight_start: { next: [{ to: "F", condition: () => true }] },
 }
 async function startGame() {
     main_player = await first_selection();
@@ -194,6 +194,9 @@ async function encounter() {
             break;
         case "event":
             await G.fight.start()
+            break
+        case "shop":
+     await shop_segment(G.fight.items)
             break
         default:
             break;
@@ -442,14 +445,14 @@ function atk_influence(e, target) {
 function e_decide_atk(e, target) {
     let influence = atk_influence(e, target)
     let total_wight = 0
-    for ( const item of influence){
+    for (const item of influence) {
         // console.log(item)
         total_wight += item
     }
     let num = rng(total_wight)
     console.log(num)
     let atk_index = 0
-    for (const item of influence){
+    for (const item of influence) {
         atk_index = influence.indexOf(item)
         if (num < item) {
             break
@@ -459,4 +462,33 @@ function e_decide_atk(e, target) {
     let atk = e.hero.attacks[atk_index]
     return atk
 }
+async function shop_segment(items) {
+
+    return new Promise((resolve, reject) => {
+        
+        for (let index = 0; index < items.length; index++) {
+            const element = items[index];
+            let div = document.createElement("div")
+            let pic = document.createElement("img")
+            pic.src = element.sprite
+            div.appendChild(pic)
+            let buy_btn = document.createElement("button")
+            buy_btn.addEventListener("click",()=>{
+                // if you cant afort: return
+                // get item
+                buy_btn.style.textDecoration = "line-throught"
+            })
+            buy_btn.textContent = "purcase:"+ element.cost+" gold"
+            div.appendChild(buy_btn)
+            shop_items.appendChild(div)
+        }
+        shop_exit.addEventListener("click",()=>{
+            shop_block.style.top = "100vh"
+            resolve(null)
+        })
+        shop_coin_counter.textContent = G.gold
+        shop_block.style.top= 0
+    })
+}
+
 console.log("battles loaded")

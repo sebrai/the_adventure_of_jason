@@ -17,6 +17,10 @@ const paths_container = document.getElementById("paths_bx")
 const b_unlock = document.getElementById("boon_unlock")
 const b_unluck_img = document.getElementById("boon_unlock_img") 
 const b_unluck_continue = document.getElementById("b_unlock_continue") 
+const shop_block = document.getElementById("shop")
+const shop_coin_counter = document.getElementById("shop_coins")
+const shop_exit = document.getElementById("shop_exit")
+const shop_items = document.getElementById("shop_items")
 // globals (important)
 let key_incrementor = 0
 let starting_gold = 30
@@ -26,6 +30,7 @@ const G = {
     nodes_visited:[],
     gold:0,
     turn_count:0,
+    fight_count:1,
     allylist:[],
     enemylist:[],
 }
@@ -106,5 +111,45 @@ function getdmg(dmg, user, attack) {
     // normal dmg effects
     return dmg
 
+}
+function weighted_rng(items) {
+    let totalWeight = 0;
+    for (const item of items) {
+        totalWeight += item.weight;
+    }
+
+
+    const randomNumber = Math.random() * totalWeight;
+
+
+    let cumulativeWeight = 0;
+    for (const item of items) {
+        cumulativeWeight += item.weight;
+        if (randomNumber < cumulativeWeight) {
+            return item.value;
+        }
+    }
+
+
+    return items[items.length - 1].value;
+}
+
+function random_items(count, items = [], weights) {
+    let result = []
+    if (!weights || !weights.length) {
+        weights = new Array(items.length).fill(rng())
+        console.log(weights)
+    }
+    let maped_weight = items.map((item, index) => {
+        return {
+            item: item,
+            weight: weights[index]
+        }
+    })
+    for (let i = 0; i > count; i++) {
+        let item = weighted_rng(maped_weight)
+        result.push(item)
+    }
+    return result
 }
 console.log("def loaded")
