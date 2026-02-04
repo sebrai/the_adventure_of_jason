@@ -474,9 +474,12 @@ async function shop_segment(items) {
             div.appendChild(pic)
             let buy_btn = document.createElement("button")
             buy_btn.addEventListener("click",()=>{
-                // if you cant afort: return
+                if (element.cost > G.gold){
+                    // rejekted animation
+                    return
+                }
                 // get item
-                buy_btn.style.textDecoration = "line-throught"
+                buy_btn.style.color = "red"
             })
             buy_btn.textContent = "purcase:"+ element.cost+" gold"
             div.appendChild(buy_btn)
