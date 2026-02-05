@@ -238,13 +238,13 @@ let head_city_guard = {
 let bandit = {
     key: "bandit",
     name: "bandit",
-    maxhp: 90,
+    maxhp: 70,
     crit_chance: 15,
     crit_mult: 1.3,
     char_speed: 45,
     speed_base: null,
     current: { // describes anything that changes
-        hp: 90,
+        hp: 70,
         crit_chance: 15,
         speed: null,
         dmg_buffs: [],
@@ -267,7 +267,7 @@ let bandit = {
         },
         aspect: 0
     },
-    sprites: ["/temp/badit.jpg"],// add sprites when created
+    sprites: ["/temp/bandit.jpg"],// add sprites when created
     attacks: [
         {
             dmg: 20,
@@ -291,7 +291,7 @@ let bandit = {
                 }
             }
         }, {
-            dmg: 40,
+            dmg: 35,
             index: 1,
             range: "melee",
             type: "slash",

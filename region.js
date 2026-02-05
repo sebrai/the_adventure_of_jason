@@ -5,8 +5,8 @@ const prolog_R = {
     done: false,
 
     path: {
-        "start": new fight(["A"], [city_guard ]),
-        "A": new fight(["B", "C"], [ city_guard, city_guard ]),
+        "start": new fight(["A"], [bandit]),
+        "A": new fight(["B", "C"], [ bandit,pirate ]),
         "B": new fight(["D"], [ city_guard, city_guard ]),
         "C": new fight(["B","D"], [pirate]),
         "D": new story_event(["E"],async () => {
@@ -21,7 +21,7 @@ const prolog_R = {
                     break;
             }
         }),
-        "E": new fight(["F","S"],[pirate],[()=>true,() => G.nodes_visited.includes("feild:B") &&  G.nodes_visited.includes("feild:C")],false,()=>{
+        "E": new fight(["F","S"],[pirate, bandit],[()=>true,() => G.nodes_visited.includes("feild:B") &&  G.nodes_visited.includes("feild:C")],false,()=>{
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/distance.jpg)"
             document.body.style.backgroundSize = "auto 100vh"
             // console.log(G.nodes_visited)
