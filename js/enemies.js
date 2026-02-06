@@ -47,7 +47,7 @@ let pirate = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self))
+                take_dmg(target, getdmg(this.dmg, self,this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -67,7 +67,7 @@ let pirate = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self))
+                take_dmg(target, getdmg(this.dmg, self,this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -128,7 +128,7 @@ let city_guard = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self))
+                take_dmg(target, getdmg(this.dmg, self,this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -147,7 +147,7 @@ let city_guard = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self))
+                take_dmg(target, getdmg(this.dmg, self,this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -208,7 +208,7 @@ let head_city_guard = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self))
+                take_dmg(target, getdmg(this.dmg, self,this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -285,7 +285,7 @@ let bandit = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self))
+                take_dmg(target, getdmg(this.dmg, self,this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -304,7 +304,7 @@ let bandit = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self))
+                take_dmg(target, getdmg(this.dmg, self,this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }

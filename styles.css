@@ -5,7 +5,7 @@ body {
   margin-top: -22px;
   background-image: url(./assets/backgrounds/temp/feild.jpg);
   background-size: cover;
-  background-position: center top ;
+  background-position: center top;
 }
 
 .tittle {
@@ -125,54 +125,60 @@ body {
 }
 
 /* shop */
-.shop{
-position: fixed;
-z-index: 33;
-top: 100vh;
-left: 0;
-width: 100vw;
-height: 100vh;
-transition: top 1s ease;
-background-image: url(assets/backgrounds/temp/shop.jpg);
-background-size: cover;
+.shop {
+  position: fixed;
+  z-index: 33;
+  top: 100vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: top 1s ease;
+  background-image: url(assets/backgrounds/temp/shop.jpg);
+  background-size: cover;
 }
-.c_cont{
+
+.c_cont {
   position: absolute;
   top: 2%;
   right: 2%;
   max-height: 10%;
 }
-.c_cont img{
+
+.c_cont img {
   height: 50px;
   aspect-ratio: 1/1;
 }
-.shop_items{
+
+.shop_items {
   position: absolute;
   top: 14%;
   right: 2%;
   width: 96%;
-  height:80% ;
-display: flex;
-flex-flow: row wrap;
-justify-content: space-around;
-align-items: center;
-/* background-color: blue; */
+  height: 80%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: blue; */
 }
-.shop_items div{
-/* background-color: brown; */
-width: 30%;
-aspect-ratio: 6/4;
+
+.shop_items div {
+  /* background-color: brown; */
+  width: 30%;
+  aspect-ratio: 6/4;
 }
-.shop_items div img{
-  width:100% ;
+
+.shop_items div img {
+  width: 100%;
 }
-#shop_exit{
-background-color: red;
-color: aqua;
-padding: 10px;
-position: absolute;
-bottom: 2%;
-right: 2%;
+
+#shop_exit {
+  background-color: red;
+  color: aqua;
+  padding: 10px;
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
 }
 
 /* path decicion */
@@ -183,7 +189,7 @@ right: 2%;
   width: 100vw;
   height: 100vh;
   z-index: 30;
-  background-image:url(./assets/backgrounds/temp/map.jpg);
+  background-image: url(./assets/backgrounds/temp/map.jpg);
   background-size: cover;
   transition: top 1s ease;
 
@@ -207,7 +213,7 @@ right: 2%;
   border-radius: 100%;
   aspect-ratio: 1/1;
   cursor: pointer;
-   background: none;
+  background: none;
 }
 
 .btn_bx button:hover {
@@ -439,7 +445,7 @@ right: 2%;
   height: 100vh;
   top: 100vh;
   /* border: solid black 2px; */
-  background-color:  rgba(30, 30, 30, 0.74);
+  background-color: rgba(30, 30, 30, 0.74);
 
 
   transition: top 1s ease;
@@ -454,16 +460,45 @@ right: 2%;
 }
 
 .boon_unlock #b_unlock_continue {
-position: absolute;
-width: 12%;
+  position: absolute;
+  width: 12%;
   background-color: rgb(83, 83, 211);
   padding: 5px;
   opacity: 0%;
   transition: opacity 1s ease-out;
   top: 75%;
-  left:44% ;
+  left: 44%;
 
 }
+
+.splash_text_cont {
+  position: fixed;
+  z-index: 50;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateY(0);
+
+  transition: transform 1s ease, opacity 1s ease;
+
+  text-shadow:
+    1px 0px 1px #CCCCCC,
+    0px 1px 1px #EEEEEE,
+    2px 1px 1px #CCCCCC,
+    1px 2px 1px #EEEEEE,
+    3px 2px 1px #CCCCCC,
+    2px 3px 1px #EEEEEE,
+    4px 3px 1px #CCCCCC,
+    3px 4px 1px #EEEEEE,
+    5px 4px 1px #CCCCCC,
+    4px 5px 1px #EEEEEE,
+    6px 5px 1px #CCCCCC,
+    5px 6px 1px #EEEEEE,
+    7px 6px 1px #CCCCCC;
+}
+
 
 /* controls -------------------------------------------------------------------------------------------*/
 

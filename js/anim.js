@@ -102,4 +102,29 @@ async function unlock_item(src) {
         resolve("")
     }))
 }
+function splash_text(target, text, color = "white") {
+    let box = document.createElement("h1")
+    box.textContent = text
+    box.className = "splash_text_cont"
+    box.style.color = color
+
+    let pos = target.getBoundingClientRect()
+
+    box.style.top = pos.top + "px"
+    box.style.left = pos.left + "px"
+
+    document.body.appendChild(box)
+
+    // Let browser render initial state first
+    requestAnimationFrame(() => {
+        box.style.opacity = "1"
+        box.style.transform = "translateY(-50px)"
+    })
+
+   
+    setTimeout(() => {
+        box.remove()
+    }, 1000)
+}
+
 console.log("anim loaded")

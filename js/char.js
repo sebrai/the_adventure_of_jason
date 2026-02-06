@@ -54,7 +54,7 @@ let jason = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self, this))
+                take_dmg(target, getdmg(this.dmg, self, this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -77,7 +77,7 @@ let jason = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self, this))
+                take_dmg(target, getdmg(this.dmg, self, this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -192,7 +192,7 @@ let medea = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self, this))
+                take_dmg(target, getdmg(this.dmg, self, this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -214,7 +214,7 @@ let medea = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self, this))
+                take_dmg(target, getdmg(this.dmg, self, this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -237,7 +237,7 @@ let medea = {
             },
             func: function (target, self) {
                 if (target.status.key === "sleep" && !String(target.hero.key).startsWith('boss_')) {
-                    take_dmg(target, getdmg(this.dmg, self, this))
+                    take_dmg(target, getdmg(this.dmg, self, this,target))
                 }
 
                 // if (this.status_eff.apply) {
@@ -322,7 +322,7 @@ let test_charachter = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self, this))
+                take_dmg(target, getdmg(this.dmg, self, this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
@@ -345,7 +345,7 @@ let test_charachter = {
                 }
             },
             func: function (target, self) {
-                take_dmg(target, getdmg(this.dmg, self, this))
+                take_dmg(target, getdmg(this.dmg, self, this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
