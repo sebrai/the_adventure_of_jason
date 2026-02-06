@@ -6,10 +6,10 @@ const prolog_R = {
 
     path: {
         "start": new fight(["A"], [bandit]),
-        "A": new fight(["B", "C"], [ bandit,pirate ]),
-        "B": new fight(["D"], [ city_guard, city_guard ]),
-        "C": new fight(["B","D"], [pirate]),
-        "D": new story_event(["E"],async () => {
+        "A": new fight(["B", "C"], [bandit, pirate]),
+        "B": new fight(["D"], [city_guard, city_guard]),
+        "C": new fight(["B", "D"], [pirate]),
+        "D": new story_event(["E"], async () => {
             switch (main_player.hero.key) {
                 case "jason":
                     // play animation based on charachter
@@ -21,19 +21,21 @@ const prolog_R = {
                     break;
             }
         }),
-        "E": new fight(["F","S"],[pirate, bandit],[()=>true,() => G.nodes_visited.includes("feild:B") &&  G.nodes_visited.includes("feild:C")],false,()=>{
+        "E": new fight(["F", "S"], [pirate, bandit], [() => true, () => G.nodes_visited.includes("feild:B") && G.nodes_visited.includes("feild:C")], false, () => {
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/distance.jpg)"
             document.body.style.backgroundSize = "auto 100vh"
             // console.log(G.nodes_visited)
         }),
-        "F": new shop(["end"],[pocket_fireball,healing_potion,speed_potion]),
-        "S": new story_event(["F"],async () => {
-            G.gold += 40
+        "F": new shop(["end"], [pocket_fireball, healing_potion, speed_potion]),
+        "S": new story_event(["F"], async () => {
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/secret_cave.jpg)"
+            await unlock_item("./assets/icons/coins.png")
+            G.gold += 40
+
         }),
-        "end": new fight(["start"],[head_city_guard,city_guard],null,true,()=>{
+        "end": new fight(["start"], [head_city_guard, city_guard], null, true, () => {
             document.body.style.backgroundImage = "url(./assets/backgrounds/temp/city_walls_infront.jpg)"
-        },async ()=>{
+        }, async () => {
             G.region = prolog_R //  should change to city
         })
     }
