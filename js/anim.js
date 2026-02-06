@@ -1,7 +1,7 @@
 function sethp(target, amount = target.hero.current.hp) {
     // target.body.hp_current.textContent = amount
     let t_time = 1000
-    numbers_roll(target.body.hp_current,amount,t_time/(Math.abs(Number(target.body.hp_current.textContent)-amount)))
+    numbers_roll(target.body.hp_current, amount, t_time / (Math.abs(Number(target.body.hp_current.textContent) - amount)))
     target.body.hp_current.style.width = (2 * amount) + "px"
     return waitForMotion(target.body.hp_current, { transitionProperty: "width", timeout: t_time })
 }
@@ -9,10 +9,10 @@ async function anim_defeat(target) {
     target.body.whole.style.opacity = "0%"
     await waitForMotion(target.body.whole, { transitionProperty: "opacity", timeout: 500 })
 
-  
+
     const bodies = target instanceof ally ? ally_area : enemy_area
 
-   
+
     for (let i = 0; i < bodies.children.length; i++) {
         const element = bodies.children[i]
         if (element === target.body.whole) {
@@ -52,25 +52,25 @@ async function count(objekt = turns ? turns : waves ? waves : null) {
 
         })
 }
-async function numbers_roll(changeing_el,end,speed =50) {
+async function numbers_roll(changeing_el, end, speed = 50) {
     // console.log(Number(changeing_el.textContent),end)
-    if (Number(changeing_el.textContent)== end) return
-    else if (Number(changeing_el.textContent)> end) {
+    if (Number(changeing_el.textContent) == end) return
+    else if (Number(changeing_el.textContent) > end) {
         while (Number(changeing_el.textContent) > end) {
-            changeing_el.textContent = Math.floor( Number(changeing_el.textContent) - 1)
+            changeing_el.textContent = Math.floor(Number(changeing_el.textContent) - 1)
             await wait(speed)
             // console.log(changeing_el.textContent)
         }
-        
+
     }
-    else{
+    else {
         while (Number(changeing_el.textContent) < end) {
-            changeing_el.textContent = Math.floor( Number(changeing_el.textContent) - 1)
+            changeing_el.textContent = Math.floor(Number(changeing_el.textContent) - 1)
             await wait(speed)
         }
     }
 
-    
+
 }
 async function set_paths_over(up = false) {
     if (up) {
@@ -82,18 +82,22 @@ async function set_paths_over(up = false) {
     return waitForMotion(pathsover, { transitionProperty: "top", timeout: 1000 })
 }
 async function unlock_boon(target) {
-    b_unluck_img.src = target.hero.boon.logo
+ return unlock_item(target.hero.boon.logo)
+}
+
+async function unlock_item(src) {
+    item_unlock_img.src = src
     b_unlock.style.top = 0
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            b_unluck_continue.addEventListener("click", () => {
+            item_unlock_continue.addEventListener("click", () => {
                 b_unlock.style.top = "100vh"
                 resolve("")
             })
-            b_unluck_continue.style.opacity = "100%"
+            item_unlock_continue.style.opacity = "100%"
 
         }, 2000)
-    }).then(b_unluck_continue.removeEventListener("click", () => {
+    }).then(item_unlock_continue.removeEventListener("click", () => {
         b_unlock.style.top = "100vh"
         resolve("")
     }))

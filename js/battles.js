@@ -172,7 +172,7 @@ async function decide_path() {
                 animationQueue.add(new animation_que_item(() => {
                     return set_paths_over(true)
                 }, pathsover))
-                paths_container.innerHTML = ""
+                // paths_container.innerHTML = ""
                 resolve([G.region.path[element.to], element.to])
 
             })

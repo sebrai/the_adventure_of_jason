@@ -15,8 +15,8 @@ const waves = document.getElementById("waves")
 const pathsover = document.getElementById("pathsover")
 const paths_container = document.getElementById("paths_bx")
 const b_unlock = document.getElementById("boon_unlock")
-const b_unluck_img = document.getElementById("boon_unlock_img") 
-const b_unluck_continue = document.getElementById("b_unlock_continue") 
+const item_unlock_img = document.getElementById("boon_unlock_img") 
+const item_unlock_continue = document.getElementById("b_unlock_continue") 
 const shop_block = document.getElementById("shop")
 const shop_coin_counter = document.getElementById("shop_coins")
 const shop_exit = document.getElementById("shop_exit")
@@ -49,7 +49,7 @@ function try_critt(chance) {
     result = chance >= rng(100, 1)
     return result
 }
-function getdmg(dmg, user, attack) {
+function getdmg(dmg, user, attack, target) {
     const critt = try_critt(attack.custom_critt ? attack.custom_critt : user.hero.current.crit_chance)
     for (let index = 0; index < user.hero.current.dmg_buffs.length; index++) {
         const element = user.hero.current.dmg_buffs[index];
@@ -80,11 +80,12 @@ function getdmg(dmg, user, attack) {
         }
     }
     if (critt) {
-        // critt dmg effect
         dmg *= attack.custom_critt_mult ? attack.custom_critt_mult : user.hero.crit_mult ? user.hero.crit_mult : 1.5
+        animationQueue.add(new animation_que_item(()=>{ return splash_text(target.body.whole,dmg+"!!!","#ff9029")}))
+        return dmg
     }
-    for (let index = 0; index < user.hero.current.sheild_buffs.length; index++) {
-        const element = user.hero.current.sheild_buffs_buffs[index];
+    for (let index = 0; index < target.hero.current.sheild_buffs.length; index++) {
+        const element = target.hero.current.sheild_buffs_buffs[index];
         const block_type_match =
             element.block_type === "any" ||
             // attack.type === "any" ||
@@ -108,7 +109,7 @@ function getdmg(dmg, user, attack) {
             }
         }
     }
-    // normal dmg effects
+      animationQueue.add(new animation_que_item(()=>{ return splash_text(target.body.whole,dmg+"!","#fff9f3")}))
     return dmg
 
 }
