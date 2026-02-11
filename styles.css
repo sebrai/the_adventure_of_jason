@@ -105,6 +105,7 @@ body {
 }
 
 .selection_chars {
+  display: flex;
   position: absolute;
   top: 20vh;
   left: 2vw;
@@ -112,16 +113,21 @@ body {
   width: 96vw;
   height: 75vh;
 
-  background-color: green;
+  background-color: rgb(138, 82, 18);
+  flex-flow: row wrap ;
+  row-gap: 20px;
+  column-gap: 50px;
+  align-items: center;
 }
 
 .selection_chars div {
   max-height: 45%;
-
+ background-color: #cfaa73;
+ height: 32%;
 }
 
 .selection_chars div img {
-  max-height: 70px;
+  max-height: 100px;
 }
 
 /* shop */
