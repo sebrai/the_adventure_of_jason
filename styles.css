@@ -481,7 +481,7 @@ body {
   opacity: 0;
   transform: translateY(0);
 
-  transition: transform 1s ease, opacity 1s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 
   text-shadow:
     1px 0px 1px #CCCCCC,
