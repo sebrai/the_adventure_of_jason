@@ -82,7 +82,7 @@ async function set_paths_over(up = false) {
     return waitForMotion(pathsover, { transitionProperty: "top", timeout: 1000 })
 }
 async function unlock_boon(target) {
- return unlock_item(target.hero.boon.logo)
+    return unlock_item(target.hero.boon.logo)
 }
 
 async function unlock_item(src) {
@@ -121,10 +121,28 @@ function splash_text(target, text, color = "white") {
         box.style.transform = "translateY(-50px)"
     })
 
-   
+
     setTimeout(() => {
         box.remove()
     }, 1000)
+}
+
+async function dash_attack(user_el, target_el) {
+    let t_box = target_el.getBoundingClientRect()
+    user_el.style.postition = "fixed"
+    user_el.style.transition = "top 0.2s ease, left 0.2s ease, opacity 0.5s ease"
+    user_el.style.left = t_box.left - t_box.width + "px"
+    user_el.style.top = t_box.top + "px "
+    await waitForMotion(user_el, { transitionProperty: "left", timeout: 100 })
+        .then(() => {
+            user_el.style.transition = "top 1s ease, left 1s ease, opacity 0.5s ease";
+            user_el.style.left = "";
+            user_el.style.top = "";
+            user_el.style.postition = ""
+
+        })
+
+    return;
 }
 
 console.log("anim loaded")

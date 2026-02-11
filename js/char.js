@@ -310,10 +310,14 @@ let test_charachter = {
                 }
             },
             func: function (target, self) {
+                animationQueue.add(new animation_que_item(()=> {return this.anim(target,self)},target.body.whole))
                 take_dmg(target, getdmg(this.dmg, self, this,target))
                 if (this.status_eff.apply) {
                     apply_effect(target, this.status_eff.statusobjekt)
                 }
+            },
+            anim: async (target,user) => {
+                return dash_attack(user.body.whole,target.body.whole)
             }
         }, {
             dmg: 45,
