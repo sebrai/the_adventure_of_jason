@@ -33,6 +33,7 @@ const G = {
     fight_count:1,
     allylist:[],
     enemylist:[],
+    temp_items:[],
 }
 
 // global functions

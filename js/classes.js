@@ -103,7 +103,7 @@ class shop {
 }
 
 class story_event {
-    constructor(next, afunc = async function () { }, n_condition = null,start_animation = null) {
+    constructor(next, afunc = async function () { }, n_condition = null, start_animation = null) {
         this.type = "event"
         this.logo = "./assets/icons/event.png"
         this.start = afunc
@@ -115,5 +115,33 @@ class story_event {
         }
     }
 }
+
+// armor -----------------------------
+
+class helmet {
+    constructor(rarity = 1) {
+        this.rarity = rarity
+        this.icon = "../assets/icons/armor/helm_" + rarity + ".png"
+        this.order = rarity
+        this.get_power = function () {
+            switch (rarity) {
+                case 3:
+                return  1+ (rarity+rng(1,-1))/10
+                    break;
+                case 2:
+                return  1+ (rarity+rng(13,3))/10
+                    break;
+                case 1:
+                return  rng(50,20)+rarity*10
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.power = this.get_power()
+    }
+}
+
+
 
 console.log("classes loaded")

@@ -12,22 +12,6 @@ let pirate = {
         speed: null,
         dmg_buffs: [],
         sheild_buffs: [],
-        items: {
-            temps: [],
-            perms: [],
-            equipables: {
-                armor: {
-                    helmet: null,
-                    chestplate: null,
-                    leggings: null,
-                    boots: null,
-                    gloves: null
-                },
-                mainhand: null,
-                sidearm: null,
-                sheild: null
-            },
-        },
         aspect: 0
     },
     sprites: ["/temp/pirate.svg"],// add sprites when created
@@ -92,22 +76,6 @@ let city_guard = {
         speed: null,
         dmg_buffs: [],
         sheild_buffs: [],
-        items: {
-            temps: [],
-            perms: [],
-            equipables: {
-                armor: {
-                    helmet: null,
-                    chestplate: null,
-                    leggings: null,
-                    boots: null,
-                    gloves: null
-                },
-                mainhand: null,
-                sidearm: null,
-                sheild: null
-            },
-        },
         aspect: 0
     },
     sprites: ["/temp/guard.jpg"],// add sprites when created
@@ -172,22 +140,6 @@ let head_city_guard = {
         speed: null,
         dmg_buffs: [],
         sheild_buffs: [],
-        items: {
-            temps: [],
-            perms: [],
-            equipables: {
-                armor: {
-                    helmet: null,
-                    chestplate: null,
-                    leggings: null,
-                    boots: null,
-                    gloves: null
-                },
-                mainhand: null,
-                sidearm: null,
-                sheild: null
-            },
-        },
         aspect: 0
     },
     sprites: ["/temp/head_guard.jpg"],// add sprites when created
@@ -248,23 +200,7 @@ let bandit = {
         crit_chance: 15,
         speed: null,
         dmg_buffs: [],
-        sheild_buffs: [],
-        items: {
-            temps: [],
-            perms: [],
-            equipables: {
-                armor: {
-                    helmet: null,
-                    chestplate: null,
-                    leggings: null,
-                    boots: null,
-                    gloves: null
-                },
-                mainhand: null,
-                sidearm: null,
-                sheild: null
-            },
-        },
+        sheild_buffs: [],  
         aspect: 0
     },
     sprites: ["/temp/bandit.jpg"],// add sprites when created

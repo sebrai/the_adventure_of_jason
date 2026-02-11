@@ -18,9 +18,6 @@ let jason = {
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
-            temps: [],
-            perms: [],
-            equipables: {
                 armor: {
                     helmet: null,
                     chestplate: null,
@@ -31,7 +28,6 @@ let jason = {
                 mainhand: null,
                 sidearm: null,
                 sheild: null
-            },
         },
         aspect: 0
     },
@@ -156,9 +152,6 @@ let medea = {
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
-            temps: [],// medea starts with a few potions
-            perms: [],
-            equipables: {
                 armor: {
                     helmet: null,
                     chestplate: null,
@@ -169,7 +162,6 @@ let medea = {
                 mainhand: null,
                 sidearm: null,
                 sheild: null
-            },
         },
         aspect: 0
     },
@@ -286,9 +278,6 @@ let test_charachter = {
         dmg_buffs: [],
         sheild_buffs: [],
         items: {
-            temps: [],
-            perms: [],
-            equipables: {
                 armor: {
                     helmet: null,
                     chestplate: null,
@@ -299,7 +288,6 @@ let test_charachter = {
                 mainhand: null,
                 sidearm: null,
                 sheild: null
-            },
         },
         aspect: 0
     },
