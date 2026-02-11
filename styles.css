@@ -517,8 +517,8 @@ body {
 
   width: 100vw;
   height: 30vh;
-  background-color: aqua;
-
+  background-color: rgb(255, 233, 213);
+  border-top: solid 3px rgb(168, 143, 95) ;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
