@@ -265,7 +265,7 @@ let test_charachter = {
     maxhp: 100,
     base_mana: 20,
     mana_gain: 5,
-    crit_chance: 15,
+    crit_chance: 5,
     crit_mult: 1.75,
     char_speed: 50,
     speed_base: null,

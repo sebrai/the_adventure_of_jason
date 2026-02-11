@@ -133,7 +133,7 @@ async function dash_attack(user_el, target_el) {
     user_el.style.transition = "top 0.2s ease, left 0.2s ease, opacity 0.5s ease"
     user_el.style.left = t_box.left - t_box.width + "px"
     user_el.style.top = t_box.top + "px "
-    await waitForMotion(user_el, { transitionProperty: "left", timeout: 100 })
+    await waitForMotion(user_el, { transitionProperty: "left", timeout: 200 })
         .then(() => {
             user_el.style.transition = "top 1s ease, left 1s ease, opacity 0.5s ease";
             user_el.style.left = "";
