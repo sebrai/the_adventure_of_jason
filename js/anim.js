@@ -145,4 +145,62 @@ async function dash_attack(user_el, target_el) {
     return;
 }
 
+function def_particle(sprite) { // dropps particle and returns its element
+    const particle = document.createElement("img")
+
+    particle.className = "particle"
+    particle.src = sprite
+    return particle
+}
+function dropp_particle(item, el, radians, r) {
+
+
+    item.style.left = el.left+(el.width/2) + "px"
+    item.style.top = el.top+(el.height/2) + "px"
+    document.body.appendChild(item)
+    item.style.transition = "top 0.5s ease-out, left 0.5s ease-out"
+    item.style.left =  el.left+(el.width/2)  + Math.sin(radians) * r + "px"
+    item.style.top =  el.top+(el.height/2)  + Math.cos(radians) * r + "px"
+}
+async function collect_particles(particles, end = { left: -5, top: -5 }, r_bar = null, counter = null) {// end is 2 cordinates, the deafult places them inside the corner of the screen
+    for (let index = 0; index < particles.length; index++) {
+        const p = particles[index];
+        p.style.transition = "top 2s ease, left 2s ease"
+        p.style.top = end.top
+        p.style.left = end.left
+        if (end.width) p.style.zIndex 
+        waitForMotion(p, { transitionProperty: "left", timeout: 2000 })
+            .then(() => {
+                // code for bar filling up or counter counting
+                document.body.removeChild(p)
+            })
+
+        await wait(rng(5, 25))
+    }
+
+
+
+}
+async function particles(sprite, element, rmax = 150, rmin = 50, number_of = 100, collection_objekt = { end_el: null, r_bar: null, counter: null, }, timer = 500) {
+    const list = []
+
+    for (let i = 0; i < number_of; i++) {
+        const particle = def_particle(sprite)
+        list.push(particle)
+        console.log(particle)
+    }
+    for (let index = 0; index < list.length; index++) {
+        const item = list[index];
+        const c_box = element.getBoundingClientRect()
+        
+        const radians = rng(360, 0) * (Math.PI / 180)
+        const r = rng(rmax, rmin)
+        dropp_particle(item, c_box, radians, r)
+
+    }
+    await wait(timer)
+    console.log(list);
+    const end_loc = collection_objekt.end_el ? collection_objekt.end_el.getBoundingClientRect() : { left: 0, top: 0 }
+    collect_particles(list, end_loc, collection_objekt.r_bar, collection_objekt.counter)
+}
 console.log("anim loaded")

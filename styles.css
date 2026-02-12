@@ -505,7 +505,13 @@ body {
     5px 6px 1px #EEEEEE,
     7px 6px 1px #CCCCCC;
 }
-
+.particle{
+  width: 5px;
+  aspect-ratio: 1/1;
+  position: fixed;
+  z-index: 26;
+  border-radius: 100%;
+}
 
 /* controls -------------------------------------------------------------------------------------------*/
 
